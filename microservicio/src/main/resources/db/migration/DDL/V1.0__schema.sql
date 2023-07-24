@@ -3,13 +3,13 @@ CREATE TABLE IF NOT EXISTS clientes
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1),
     cliente_name VARCHAR (255) NOT NULL,
     cliente_email VARCHAR (255) NOT NULL,
-    ciente_identity VARCHAR (255) NOT NULL,
+    cliente_identity VARCHAR (255) NOT NULL,
     cliente_address VARCHAR (255) NOT NULL,
     cliente_phone_number VARCHAR (255) NOT NULL,
     cliente_username VARCHAR (255) NOT NULL,
     cliente_password VARCHAR (255) NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE (ciente_identity, cliente_username, cliente_email)
+    UNIQUE (cliente_identity, cliente_username, cliente_email)
 );
 
 

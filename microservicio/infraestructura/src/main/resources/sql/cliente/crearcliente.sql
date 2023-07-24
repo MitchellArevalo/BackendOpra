@@ -1,0 +1,2 @@
+insert into clientes(cliente_name, cliente_email, cliente_identity, cliente_address, cliente_phone_number, cliente_username, cliente_password)
+values (:cliente_name, :cliente_email, :cliente_identity, :cliente_address, :cliente_phone_number, :cliente_username, :cliente_password)
