@@ -1,5 +1,5 @@
 
-CREATE TABLE dbopra.clientes
+CREATE TABLE newopra.clientes
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1),
     cliente_name VARCHAR (255) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE modulos
 
 CREATE TABLE roles
 (
-    id INT NOT NULL,
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     rol_name VARCHAR (255) NOT NULL,
     PRIMARY KEY (id)
 );
@@ -46,6 +46,7 @@ CREATE TABLE modulosRoles
 CREATE TABLE personas
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    persona_avatar TEXT,
     persona_username VARCHAR (255) NOT NULL,
     persona_password VARCHAR (255) NOT NULL,
     persona_document VARCHAR (255) NOT NULL,
@@ -58,7 +59,9 @@ CREATE TABLE personas
     REFERENCES roles(id)
     ON UPDATE NO ACTION
     ON DELETE NO ACTION,
-    UNIQUE (persona_username, persona_document, persona_email)
+    UNIQUE (persona_username),
+    UNIQUE (persona_document),
+    UNIQUE (persona_email)
 );
 
 CREATE TABLE ordenCompraProvedor
@@ -74,7 +77,7 @@ CREATE TABLE ordenCompraProvedor
 
 CREATE TABLE proveedor
 (
-    id INT NOT NULL,
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     proveedor_name VARCHAR (255) NOT NULL,
     proveedor_document_identity VARCHAR (255) NOT NULL,
     proveedor_phone_number VARCHAR (255) NOT NULL,

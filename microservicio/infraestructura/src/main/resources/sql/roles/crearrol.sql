@@ -1,0 +1,1 @@
+insert into roles(rol_name) values (:rol_name)

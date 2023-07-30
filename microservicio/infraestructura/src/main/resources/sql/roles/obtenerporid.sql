@@ -1,0 +1,1 @@
+select id, rol_name from roles where id = :id
