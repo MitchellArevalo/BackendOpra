@@ -1,16 +1,15 @@
 
-CREATE TABLE newopra.clientes
+CREATE TABLE opraecommerce.clients
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1),
-    cliente_name VARCHAR (255) NOT NULL,
-    cliente_email VARCHAR (255) NOT NULL,
-    cliente_identity VARCHAR (255) NOT NULL,
-    cliente_address VARCHAR (255) NOT NULL,
-    cliente_phone_number VARCHAR (255) NOT NULL,
-    cliente_username VARCHAR (255) NOT NULL,
-    cliente_password VARCHAR (255) NOT NULL,
+    client_name VARCHAR (255) NOT NULL,
+    client_email VARCHAR (255) NOT NULL,
+    client_identity VARCHAR (255) NOT NULL,
+    client_address VARCHAR (255) NOT NULL,
+    client_phone_number VARCHAR (255) NOT NULL,
+    client_password VARCHAR (255) NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE (cliente_identity, cliente_username, cliente_email)
+    UNIQUE (client_identity, client_email)
 );
 
 
@@ -18,7 +17,9 @@ CREATE TABLE modulos
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     module_name VARCHAR (255) NOT NULL,
-    module_permission boolean NOT NULL,
+    module_edit boolean NOT NULL,
+    module_create boolean NOT NULL,
+    module_delete boolean NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -43,112 +44,131 @@ CREATE TABLE modulosRoles
         ON DELETE NO ACTION
 );
 
-CREATE TABLE personas
+create table notifications
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-    persona_avatar TEXT,
-    persona_username VARCHAR (255) NOT NULL,
-    persona_password VARCHAR (255) NOT NULL,
-    persona_document VARCHAR (255) NOT NULL,
-    persona_name VARCHAR (255) NOT NULL,
-    persona_email VARCHAR (255) NOT NULL,
-    persona_phone_number VARCHAR (255) NOT NULL,
+    employee_id int not null,
+    notification_subject VARCHAR (255) NOT NULL,
+    notification_message VARCHAR (255) NOT NULL,
+    notification_readed boolean,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE employees
+(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    employee_avatar TEXT,
+    employee_name VARCHAR (50) NOT NULL,
+    employee_email VARCHAR (150) NOT NULL,
+    employee_password VARCHAR (255) NOT NULL,
+    employee_document VARCHAR (255) NOT NULL,
+    employee_address VARCHAR (255),
+    employee_phone_number VARCHAR (255) NOT NULL,
+    employee_active boolean,
+    employee_notifications_email boolean,
     rol_id INT NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT rol_id FOREIGN KEY (rol_id)
     REFERENCES roles(id)
     ON UPDATE NO ACTION
     ON DELETE NO ACTION,
-    UNIQUE (persona_username),
-    UNIQUE (persona_document),
-    UNIQUE (persona_email)
+    UNIQUE (employee_document),
+    UNIQUE (employee_email)
 );
 
-CREATE TABLE ordenCompraProvedor
-(
-    orden_fechacompra date NOT NULL,
-    proveedor_id INT,
-    persona_id INT,
-    CONSTRAINT persona_id FOREIGN KEY (persona_id)
-        REFERENCES personas (id)
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-);
-
-CREATE TABLE proveedor
+CREATE TABLE sales
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-    proveedor_name VARCHAR (255) NOT NULL,
-    proveedor_document_identity VARCHAR (255) NOT NULL,
-    proveedor_phone_number VARCHAR (255) NOT NULL,
+    sale_product_id int not null,
+    employee_id int not null,
+    client_id int not null,
+    PRIMARY KEY (id),
+    CONSTRAINT employee_id FOREIGN KEY (employee_id)
+        REFERENCES employees (id)
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT client_id FOREIGN KEY (client_id)
+            REFERENCES clients (id)
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION
+);
+
+
+create table saleProducts
+(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    product_id int not null,
+    product_quantity int not null,
+    product_unit_price decimal not null,
+    product_profit decimal not null,
+    product_total decimal not null,
     PRIMARY KEY (id)
 );
 
-ALTER TABLE ordenCompraProvedor ADD CONSTRAINT proveedor_id FOREIGN KEY (proveedor_id) REFERENCES proveedor(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
+ALTER TABLE sales ADD CONSTRAINT sale_product_id FOREIGN KEY (sale_product_id) REFERENCES saleProducts(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
 
-CREATE TABLE detalleCompraProveedor
+CREATE TABLE products
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1),
-    proveedor_id INT NOT NULL,
-    detallecompra_quantity INT NOT NULL,
-    detallecompra_producto_precio_compra INT NOT NULL,
-    producto_id INT NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT proveedor_id FOREIGN KEY (proveedor_id)
-    REFERENCES proveedor(id)
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
+    product_name VARCHAR (255) NOT NULL,
+    product_item_code VARCHAR (255) NOT NULL,
+    product_size VARCHAR (255) NOT NULL,
+    product_sales_price DECIMAL NOT NULL,
+    product_cost_price DECIMAL NOT NULL,
+    product_description VARCHAR (255) NOT NULL,
+    product_image TEXT NOT NULL,
+    product_stock INT default 0,
+    category_id int not null,
+    PRIMARY KEY (id)
 );
 
+ALTER TABLE saleProducts ADD CONSTRAINT product_id FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
 
-CREATE TABLE productos
-(
-    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1),
-    producto_name VARCHAR (255) NOT NULL,
-    producto_size VARCHAR (255) NOT NULL,
-    producto_family VARCHAR (255) NOT NULL,
-    producto_color VARCHAR (255) NOT NULL,
-    producto_style VARCHAR (255) NOT NULL,
-    producto_description VARCHAR (255) NOT NULL,
-    producto_precio_venta INT NOT NULL,
-    producto_stock INT,
-    detallecompra_id INT NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT detallecompra_id FOREIGN KEY (detallecompra_id)
-    REFERENCES detalleCompraProveedor (id)
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-);
-
-ALTER TABLE detalleCompraProveedor ADD CONSTRAINT producto_id FOREIGN KEY (producto_id) REFERENCES productos (id) ON UPDATE NO ACTION ON DELETE NO ACTION;
-
-
-CREATE TABLE categorias
+CREATE TABLE category
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 ),
-    categoria_nombre VARCHAR (255) NOT NULL,
-    producto_id INT NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT producto_id FOREIGN KEY (producto_id)
-    REFERENCES productos (id)
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
+    category_name VARCHAR (255) NOT NULL,
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE detalleVenta
+ALTER TABLE products ADD CONSTRAINT category_id FOREIGN KEY (category_id) REFERENCES category(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+
+create table outputProducts
 (
-    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-    detalle_quantity INT NOT NULL,
-    detalle_fecha_venta date,
-    producto_id INT NOT NULL,
-    cliente_id INT NOT NULL,
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1),
+    employee_id int not null,
+    product_id int not null,
+    output_quantity int not null,
+    ouput_description VARCHAR (255) NOT NULL,
+    output_date DATE,
     PRIMARY KEY (id),
-    CONSTRAINT cliente_id FOREIGN KEY (cliente_id)
-    REFERENCES clientes (id)
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION,
-    CONSTRAINT producto_id FOREIGN KEY (producto_id)
-    REFERENCES productos (id)
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
+    CONSTRAINT employee_id FOREIGN KEY (employee_id)
+            REFERENCES employees (id)
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION,
+    CONSTRAINT product_id FOREIGN KEY (product_id)
+            REFERENCES products (id)
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION
+);
+
+create table inputProducts
+(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1),
+    employee_id int not null,
+    product_id int not null,
+    input_product_cost decimal not null,
+    input_description VARCHAR (255) NOT NULL,
+    input_quantity int NOT NULL,
+    input_date DATE,
+    PRIMARY KEY (id),
+    CONSTRAINT employee_id FOREIGN KEY (employee_id)
+            REFERENCES employees (id)
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION,
+    CONSTRAINT product_id FOREIGN KEY (product_id)
+            REFERENCES products (id)
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION
 );
