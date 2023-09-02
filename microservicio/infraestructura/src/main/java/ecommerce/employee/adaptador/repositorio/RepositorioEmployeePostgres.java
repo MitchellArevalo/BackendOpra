@@ -24,6 +24,9 @@ public class RepositorioEmployeePostgres implements RepositorioEmployee {
     @SqlStatement(namespace = "employee", value = "deleteEmployee")
     private static String sqlBorrarEmployee;
 
+    @SqlStatement(namespace = "employee", value = "updateEmployee")
+    private static String sqlActualizarEmployee;
+
 
     @Override
     public Long crear(Employee employee) {
@@ -41,7 +44,18 @@ public class RepositorioEmployeePostgres implements RepositorioEmployee {
 
     @Override
     public void update(Employee employee, Long id) {
-
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        parameterSource.addValue("rol_id", employee.getRol().getIdRol());
+        parameterSource.addValue("employee_name", employee.getName());
+        parameterSource.addValue("employee_email", employee.getEmail());
+        parameterSource.addValue("employee_document", employee.getDocument());
+        parameterSource.addValue("employee_address", employee.getAddress());
+        parameterSource.addValue("employee_phone_number", employee.getPhoneNumber());
+        parameterSource.addValue("employee_avatar", employee.getAvatar());
+        parameterSource.addValue("employee_active", employee.isActive());
+        parameterSource.addValue("employee_notifications_email", employee.isNotificationsEmail());
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarEmployee, parameterSource);
     }
 
     @Override

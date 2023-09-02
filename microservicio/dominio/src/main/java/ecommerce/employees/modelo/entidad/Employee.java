@@ -42,6 +42,18 @@ public class Employee {
         this.avatar = avatar;
     }
 
+    public Employee(Rol rol, String name, String email, String document, String address, String phoneNumber, String avatar, boolean active, boolean notificationsEmail) {
+        this.rol = rol;
+        this.name = name;
+        this.email = email;
+        this.document = document;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.active = active;
+        this.notificationsEmail = notificationsEmail;
+    }
+
     public static Employee reconstruir(Long idEmployee, Rol rol, String name, String email, String password, String document, String address, String phoneNumber, String avatar, boolean active, boolean notificationsEmail){
         ValidadorArgumento.validarObligatorio(idEmployee, "Debes ingresar el id del empleado para reconstruir");
         ValidadorArgumento.validarObligatorio(name, "Debes ingresar el name del empleado para reconstruir");
@@ -66,6 +78,19 @@ public class Employee {
         ValidadorArgumento.validarObligatorio(avatar, "Debes ingresar el avatar del empleado para crear");
         return new Employee(rol, name, email, password, document, address, phoneNumber, avatar);
     }
+
+    public static Employee actualizar(Rol rol, String name, String email, String document, String address, String phoneNumber, String avatar, boolean active, boolean notificationsEmail){
+        ValidadorArgumento.validarObligatorio(name, "Debes ingresar el name del empleado para actualizar");
+        ValidadorArgumento.validarObligatorio(email, "Debes ingresar el email del empleado para actualizar");
+        ValidadorArgumento.validarObligatorio(document, "Debes ingresar el document del empleado para actualizar");
+        ValidadorArgumento.validarObligatorio(address, "Debes ingresar el address del empleado para actualizar");
+        ValidadorArgumento.validarObligatorio(phoneNumber, "Debes ingresar el phoneNumber del empleado para actualizar");
+        ValidadorArgumento.validarObligatorio(avatar, "Debes ingresar el avatar del empleado para actualizar");
+        ValidadorArgumento.validarObligatorio(active, "Debes ingresar el active del empleado para actualizar");
+        ValidadorArgumento.validarObligatorio(notificationsEmail, "Debes ingresar el notificationEmail del empleado para actualizar");
+        return new Employee(rol, name, email, document, address, phoneNumber, avatar, active, notificationsEmail);
+    }
+
 
     public Long getIdEmployee() {
         return idEmployee;

@@ -1,14 +1,18 @@
 package ecommerce.employee.comando;
 
-import ecommerce.roles.modelo.entidad.Rol;
-import org.springframework.stereotype.Component;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Component
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ComandoActualizarEmployee {
     Long idRol;
     String name;
     String email;
-    String password;
     String document;
     String address;
     String phoneNumber;

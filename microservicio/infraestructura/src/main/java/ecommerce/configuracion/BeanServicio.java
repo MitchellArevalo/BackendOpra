@@ -2,7 +2,10 @@ package ecommerce.configuracion;
 import ecommerce.cliente.puerto.repositorio.RepositorioCliente;
 import ecommerce.cliente.servicio.ServicioCrearCliente;
 import ecommerce.employees.puerto.repositorio.RepositorioEmployee;
+import ecommerce.employees.servicios.ServicioActualizarEmployee;
 import ecommerce.employees.servicios.ServicioCrearEmployee;
+import ecommerce.modulos.puerto.repositorio.RepositorioModule;
+import ecommerce.modulos.servicios.ServiciosModule;
 import ecommerce.personas.puerto.repositorio.RepositorioPersona;
 import ecommerce.personas.servicio.ServicioCrearPersona;
 import ecommerce.roles.puerto.repositorio.RepositorioRol;
@@ -31,5 +34,14 @@ public class BeanServicio {
     @Bean
     public ServicioCrearEmployee servicioCrearEmployee(RepositorioEmployee repositorioEmployee){
         return new ServicioCrearEmployee(repositorioEmployee);
+    }
+
+    @Bean
+    public ServicioActualizarEmployee servicioActualizarEmployee(RepositorioEmployee repositorioEmployee){
+        return new ServicioActualizarEmployee(repositorioEmployee);
+    }
+    @Bean
+    public ServiciosModule serviciosModule(RepositorioModule repositorioModule){
+        return new ServiciosModule(repositorioModule);
     }
 }

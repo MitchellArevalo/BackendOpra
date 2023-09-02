@@ -19,7 +19,7 @@ public class ManejadorCrearEmployee implements ManejadorComandoRespuesta<Comando
 
 
     @Override
-    public ComandoRespuesta<Long> ejecutar(ComandoSolicitudCrearEmployee comando) {
-        return new ComandoRespuesta<>(servicioCrearEmployee.ejecutar(generarSolicitudCrearEmployee.crear(comando)));
+    public ComandoRespuesta<Long> ejecutar(ComandoSolicitudCrearEmployee comandoSolicitudCrearEmployee) {
+        return new ComandoRespuesta<>(servicioCrearEmployee.ejecutar(generarSolicitudCrearEmployee.crear(comandoSolicitudCrearEmployee)));
     }
 }
