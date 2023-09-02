@@ -13,13 +13,14 @@ CREATE TABLE opraecommerce.clients
 );
 
 
-CREATE TABLE modulos
+CREATE TABLE modules
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     module_name VARCHAR (255) NOT NULL,
     module_edit boolean NOT NULL,
     module_create boolean NOT NULL,
     module_delete boolean NOT NULL,
+    module_view boolean NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -30,12 +31,12 @@ CREATE TABLE roles
     PRIMARY KEY (id)
 );
 
-CREATE TABLE modulosRoles
+CREATE TABLE moduleRol
 (
     rol_id INT NOT NULL,
     module_id INT NOT NULL,
     CONSTRAINT module_id FOREIGN KEY (module_id)
-        REFERENCES modulos(id)
+        REFERENCES modules(id)
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
     CONSTRAINT rol_id FOREIGN KEY (rol_id)
@@ -64,8 +65,8 @@ CREATE TABLE employees
     employee_document VARCHAR (255) NOT NULL,
     employee_address VARCHAR (255),
     employee_phone_number VARCHAR (255) NOT NULL,
-    employee_active boolean,
-    employee_notifications_email boolean,
+    employee_active boolean default true,
+    employee_notifications_email boolean default false,
     rol_id INT NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT rol_id FOREIGN KEY (rol_id)

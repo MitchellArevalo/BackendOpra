@@ -1,0 +1,2 @@
+insert into employees(employee_avatar, employee_name, employee_email, employee_password, employee_document, employee_address, employee_phone_number, rol_id)
+values (:employee_avatar, :employee_name, :employee_email, :employee_password, :employee_document, :employee_address, :employee_phone_number, :rol_id)
