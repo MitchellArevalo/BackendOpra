@@ -1,0 +1,14 @@
+Realizar actualizaciones de employees para cambiar el valor de si està activo y las de notificaciones de email.
+Como realizar los update de forma dinamica para el active y el notificationsemail
+
+
+{
+"avatar":"urlImage",
+"name":"Jose",
+"email":"jose@mail.com",
+"contrasena":"123",
+"documento":"1234",
+"direccion":"cerrito",
+"numeroTelefonico":"54321",
+"idRol": 1
+}
