@@ -1,8 +1,17 @@
 .gradle
 microservicio/build/libs
-build/libs
+build/libs.jar
 gradle/wrapper/gradle-wrapper.jar
 
+microservicio/dominio/build
+microservicio/infraestructura/build
+microservicio/build
+microservicio/aplicacion/build
+
+comun/comun-aplicacion/build
+comun/comun-dominio/build
+comun/comun-infraestructura/build
+comun/comun-test/build
 ### STS ###
 .apt_generated
 .classpath
