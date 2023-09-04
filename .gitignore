@@ -1,7 +1,6 @@
 .gradle
-build
-!microservicio/build/libs
-!build/libs
+microservicio/build/libs
+build/libs
 gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
