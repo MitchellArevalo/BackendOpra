@@ -1,8 +1,12 @@
 package ecommerce.employees.modelo.entidad;
 import ecommerce.dominio.ValidadorArgumento;
 import ecommerce.roles.modelo.entidad.Rol;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class Employee {
+import java.util.Collection;
+
+public class Employee implements UserDetails {
     private Long idEmployee;
     private Rol rol;
     private String name;
@@ -108,8 +112,38 @@ public class Employee {
         return email;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
     public String getPassword() {
-        return password;
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public String getDocument() {

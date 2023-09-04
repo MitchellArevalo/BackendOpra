@@ -1,0 +1,1 @@
+select * from notifications where employee_id = :employee_id

@@ -32,6 +32,7 @@ CREATE TABLE roles
 
 CREATE TABLE moduleRol
 (
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     rol_id INT NOT NULL,
     module_id INT NOT NULL,
     CONSTRAINT module_id FOREIGN KEY (module_id)
@@ -41,7 +42,8 @@ CREATE TABLE moduleRol
     CONSTRAINT rol_id FOREIGN KEY (rol_id)
         REFERENCES roles(id)
         ON UPDATE NO ACTION
-        ON DELETE NO ACTION
+        ON DELETE NO ACTION,
+    primary key (id)
 );
 
 create table notifications
@@ -50,7 +52,7 @@ create table notifications
     employee_id int not null,
     notification_subject VARCHAR (255) NOT NULL,
     notification_message VARCHAR (255) NOT NULL,
-    notification_readed boolean,
+    notification_readed boolean default false,
     PRIMARY KEY (id)
 );
 
@@ -172,3 +174,4 @@ create table inputProducts
             ON UPDATE NO ACTION
             ON DELETE NO ACTION
 );
+

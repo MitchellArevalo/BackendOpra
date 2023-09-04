@@ -1,7 +1,7 @@
 package ecommerce.module.consulta;
 
-import ecommerce.modulos.modelo.entidad.Modulo;
-import ecommerce.modulos.puerto.dao.DaoModule;
+import ecommerce.modules.modelo.entidad.Modulo;
+import ecommerce.modules.puerto.dao.DaoModule;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class ManejadorListadoModules {
     public ManejadorListadoModules(DaoModule daoModule) {
         this.daoModule = daoModule;
     }
-    public List<Modulo> obtener(Long id){
+    public List<Modulo> obtener(){
         return daoModule.getAllModules();
     }
 }

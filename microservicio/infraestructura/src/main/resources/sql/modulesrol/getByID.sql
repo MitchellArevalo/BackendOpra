@@ -1,0 +1,1 @@
+select * from modulerol where id = :id

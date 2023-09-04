@@ -4,23 +4,23 @@ import ecommerce.ComandoRespuesta;
 import ecommerce.manejador.ManejadorComandoRespuesta;
 import ecommerce.module.comando.ComandoSolicitudCrearModulo;
 import ecommerce.module.comando.fabrica.GenerarSolicitudCrearModulo;
-import ecommerce.modulos.servicios.ServiciosModule;
+import ecommerce.modules.servicios.ServicioCrearModulo;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class ManejadorCrearModulo implements ManejadorComandoRespuesta<ComandoSolicitudCrearModulo, ComandoRespuesta<Long>> {
     private final GenerarSolicitudCrearModulo generarSolicitudCrearModulo;
-    private final ServiciosModule serviciosModule;
+    private final ServicioCrearModulo servicioCrearModulo;
 
-    public ManejadorCrearModulo(GenerarSolicitudCrearModulo generarSolicitudCrearModulo, ServiciosModule serviciosModule) {
+    public ManejadorCrearModulo(GenerarSolicitudCrearModulo generarSolicitudCrearModulo, ServicioCrearModulo servicioCrearModulo) {
         this.generarSolicitudCrearModulo = generarSolicitudCrearModulo;
-        this.serviciosModule = serviciosModule;
+        this.servicioCrearModulo = servicioCrearModulo;
     }
 
 
     @Override
     public ComandoRespuesta<Long> ejecutar(ComandoSolicitudCrearModulo comandoSolicitudCrearModulo) {
-        return new ComandoRespuesta<>(serviciosModule.crear(generarSolicitudCrearModulo.crear(comandoSolicitudCrearModulo)));
+        return new ComandoRespuesta<>(servicioCrearModulo.ejecutar(generarSolicitudCrearModulo.crear(comandoSolicitudCrearModulo)));
     }
 }

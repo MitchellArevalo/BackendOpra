@@ -1,0 +1,1 @@
+select * from modulerol where rol_id = :rol_id

@@ -54,6 +54,5 @@ public class ComandoControladorEmployee extends ManejadorError {
         }catch (Exception e){
             return new ResponseEntity<>("Error al actualizar el empleado \n" + e, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 }

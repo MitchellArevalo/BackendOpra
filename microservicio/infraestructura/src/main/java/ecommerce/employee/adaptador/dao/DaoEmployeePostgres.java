@@ -1,6 +1,8 @@
 package ecommerce.employee.adaptador.dao;
 
+import ecommerce.employee.adaptador.repositorio.MapeoDTOEmployee;
 import ecommerce.employee.adaptador.repositorio.MapeoEmployee;
+import ecommerce.employees.modelo.dto.DataDTOEmployee;
 import ecommerce.employees.modelo.entidad.Employee;
 import ecommerce.employees.puerto.dao.DaoEmployee;
 import ecommerce.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
@@ -15,6 +17,7 @@ import java.util.List;
 public class DaoEmployeePostgres implements DaoEmployee {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+    private final MapeoDTOEmployee mapeoDTOEmployee;
 
     private final MapeoEmployee mapeoEmployee;
     @SqlStatement(namespace = "employee", value = "getByID")
@@ -25,9 +28,12 @@ public class DaoEmployeePostgres implements DaoEmployee {
 
     @SqlStatement(namespace = "employee", value = "getByIDWithoutPassword")
     private static String sqlObtenerPorIDWithoutPassword;
+    @SqlStatement(namespace = "employee", value = "getDataDTOEmployee")
+    private static String sqlObtenerDTO;
 
-    public DaoEmployeePostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, MapeoEmployee mapeoEmployee) {
+    public DaoEmployeePostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, MapeoDTOEmployee mapeoDTOEmployee, MapeoEmployee mapeoEmployee) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
+        this.mapeoDTOEmployee = mapeoDTOEmployee;
         this.mapeoEmployee = mapeoEmployee;
     }
 
@@ -37,6 +43,14 @@ public class DaoEmployeePostgres implements DaoEmployee {
         parameterSource.addValue("id", id);
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate
                 .getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorID, parameterSource, mapeoEmployee));
+    }
+
+    @Override
+    public DataDTOEmployee getDTOEmployee(Long id) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate
+                .getNamedParameterJdbcTemplate().queryForObject(sqlObtenerDTO, parameterSource, mapeoDTOEmployee));
     }
 
     @Override

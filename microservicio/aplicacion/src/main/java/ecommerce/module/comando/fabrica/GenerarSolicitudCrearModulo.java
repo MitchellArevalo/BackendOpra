@@ -1,7 +1,7 @@
 package ecommerce.module.comando.fabrica;
 
 import ecommerce.module.comando.ComandoSolicitudCrearModulo;
-import ecommerce.modulos.modelo.entidad.Modulo;
+import ecommerce.modules.modelo.entidad.Modulo;
 import org.springframework.stereotype.Component;
 
 @Component

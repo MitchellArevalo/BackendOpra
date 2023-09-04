@@ -1,0 +1,1 @@
+select id, employee_name, employee_email, employee_document, employee_address from employees where id = :id

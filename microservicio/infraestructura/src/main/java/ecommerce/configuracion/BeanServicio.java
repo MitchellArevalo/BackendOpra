@@ -4,8 +4,12 @@ import ecommerce.cliente.servicio.ServicioCrearCliente;
 import ecommerce.employees.puerto.repositorio.RepositorioEmployee;
 import ecommerce.employees.servicios.ServicioActualizarEmployee;
 import ecommerce.employees.servicios.ServicioCrearEmployee;
-import ecommerce.modulos.puerto.repositorio.RepositorioModule;
-import ecommerce.modulos.servicios.ServiciosModule;
+import ecommerce.modules.puerto.repositorio.RepositorioModule;
+import ecommerce.modules.servicios.ServicioCrearModulo;
+import ecommerce.modulesrol.puerto.repositorio.RepositorioModulesRol;
+import ecommerce.modulesrol.servicio.ServiciosModulesRol;
+import ecommerce.notifications.puerto.repositorio.RepositorioNotification;
+import ecommerce.notifications.servicio.ServiciosNotifications;
 import ecommerce.personas.puerto.repositorio.RepositorioPersona;
 import ecommerce.personas.servicio.ServicioCrearPersona;
 import ecommerce.roles.puerto.repositorio.RepositorioRol;
@@ -40,8 +44,17 @@ public class BeanServicio {
     public ServicioActualizarEmployee servicioActualizarEmployee(RepositorioEmployee repositorioEmployee){
         return new ServicioActualizarEmployee(repositorioEmployee);
     }
+
     @Bean
-    public ServiciosModule serviciosModule(RepositorioModule repositorioModule){
-        return new ServiciosModule(repositorioModule);
+    public ServicioCrearModulo servicioCrearModulo(RepositorioModule repositorioModule){
+        return new ServicioCrearModulo(repositorioModule);
+    }
+    @Bean
+    public ServiciosNotifications serviciosNotifications(RepositorioNotification repositorioNotification){
+        return new ServiciosNotifications(repositorioNotification);
+    }
+    @Bean
+    public ServiciosModulesRol serviciosModulesRol(RepositorioModulesRol repositorioModulesRol){
+        return new ServiciosModulesRol(repositorioModulesRol);
     }
 }

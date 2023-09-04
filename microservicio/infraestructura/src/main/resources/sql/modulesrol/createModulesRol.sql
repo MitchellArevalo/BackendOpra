@@ -1,0 +1,1 @@
+insert into modulerol(rol_id, module_id) values (:rol_id, :module_id)
