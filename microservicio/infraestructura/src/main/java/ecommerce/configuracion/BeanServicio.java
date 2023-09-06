@@ -1,4 +1,6 @@
 package ecommerce.configuracion;
+import ecommerce.category.puerto.repositorio.RepositorioCategory;
+import ecommerce.category.servicio.ServiciosCategory;
 import ecommerce.cliente.puerto.repositorio.RepositorioCliente;
 import ecommerce.cliente.servicio.ServicioCrearCliente;
 import ecommerce.employees.puerto.repositorio.RepositorioEmployee;
@@ -12,6 +14,8 @@ import ecommerce.notifications.puerto.repositorio.RepositorioNotification;
 import ecommerce.notifications.servicio.ServiciosNotifications;
 import ecommerce.personas.puerto.repositorio.RepositorioPersona;
 import ecommerce.personas.servicio.ServicioCrearPersona;
+import ecommerce.productos.puerto.repositorio.RepositorioProduct;
+import ecommerce.productos.servicio.ServiciosProduct;
 import ecommerce.roles.puerto.repositorio.RepositorioRol;
 import ecommerce.roles.servicio.ServicioCrearRol;
 import org.springframework.context.annotation.Bean;
@@ -56,5 +60,15 @@ public class BeanServicio {
     @Bean
     public ServiciosModulesRol serviciosModulesRol(RepositorioModulesRol repositorioModulesRol){
         return new ServiciosModulesRol(repositorioModulesRol);
+    }
+
+    @Bean
+    public ServiciosCategory serviciosCategory(RepositorioCategory repositorioCategory){
+        return new ServiciosCategory(repositorioCategory);
+    }
+
+    @Bean
+    public ServiciosProduct serviciosProduct(RepositorioProduct repositorioProduct){
+        return new ServiciosProduct(repositorioProduct);
     }
 }

@@ -24,6 +24,9 @@ public class RepositorioRolPostgres implements RepositorioRol {
     @SqlStatement(namespace = "roles", value="crearrol")
     private static String sqlCrearRol;
 
+    @SqlStatement(namespace = "roles", value="deleteRol")
+    private static String sqlDeleteRol;
+
     @Override
     public Long crear(Rol rol) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -37,5 +40,12 @@ public class RepositorioRolPostgres implements RepositorioRol {
         parameterSource.addValue("id", id);
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(()-> this.customNamedParameterJdbcTemplate.
                         getNamedParameterJdbcTemplate().queryForObject(sqlObtenerRol, parameterSource, mapeoRol));
+    }
+
+    @Override
+    public void delete(Long id) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlDeleteRol, parameterSource);
     }
 }

@@ -8,7 +8,7 @@ public interface RepositorioEmployee {
 
     void update(Employee employee, Long id);
 
-    DataDTOEmployee autenticar(String email);
+    Employee autenticar(String email);
 
     void delete(Long id);
 }

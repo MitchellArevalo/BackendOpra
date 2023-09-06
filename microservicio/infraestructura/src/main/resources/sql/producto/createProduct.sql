@@ -1,0 +1,2 @@
+insert into products(product_name, product_item_code, product_size,product_sales_price, product_cost_price, product_description, product_image, product_stock, category_id)
+values (:product_name, :product_item_code, :product_size,:product_sales_price, :product_cost_price, :product_description, :product_image, :product_stock, :category_id)

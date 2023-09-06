@@ -1,3 +1,3 @@
-select  id, nombre, aplica_iva, valor
-from producto
+select  *
+from products
 where id = :id

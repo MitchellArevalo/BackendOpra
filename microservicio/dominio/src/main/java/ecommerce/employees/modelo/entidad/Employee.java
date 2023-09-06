@@ -117,13 +117,14 @@ public class Employee implements UserDetails {
         return null;
     }
 
+    @Override
     public String getPassword() {
         return this.password;
     }
 
     @Override
     public String getUsername() {
-        return this.name;
+        return this.email;
     }
 
     @Override

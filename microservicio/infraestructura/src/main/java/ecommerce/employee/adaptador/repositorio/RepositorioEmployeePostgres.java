@@ -65,11 +65,11 @@ public class RepositorioEmployeePostgres implements RepositorioEmployee {
     }
 
     @Override
-    public DataDTOEmployee autenticar(String email) {
+    public Employee autenticar(String email) {
     MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("employee_email", email);
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate
-                .getNamedParameterJdbcTemplate().queryForObject(sqlAutenticar, parameterSource, mapeoDTOEmployee));
+                .getNamedParameterJdbcTemplate().queryForObject(sqlAutenticar, parameterSource, mapeoEmployee));
     }
 
     @Override
