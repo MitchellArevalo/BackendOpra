@@ -39,7 +39,21 @@ public class RepositorioModuloPostgres implements RepositorioModule {
     }
 
     @Override
-    public void update(Modulo modulo) {
+    public void update(Modulo module, Long id) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("module_name",module.getName());
+        parameterSource.addValue("module_edit",module.isEdit());
+        parameterSource.addValue("module_create",module.isCreate());
+        parameterSource.addValue("module_delete",module.isDelete());
+        parameterSource.addValue("module_view",module.isView());
+        this.customNamedParameterJdbcTemplate.crear(parameterSource, sqlActualizarModulo);
+    }
+
+    @Override
+    public void delete(Long id) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlBorrarModulo, parameterSource);
 
     }
 }

@@ -32,9 +32,7 @@ public class ModulesRol {
         return new ModulesRol(modulo, rol);
     }
 
-    public Long getIdModulo() {
-        return idModulo;
-    }
+
 
     public Modulo getModulo() {
         return modulo;
