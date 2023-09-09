@@ -45,6 +45,14 @@ public class Modulo {
         ValidadorArgumento.validarObligatorio(delete, "Debes ingresar true o false para borrar");
         return new Modulo(name, edit, view, create, delete);
     }
+    public static Modulo actualizar(String name, boolean edit, boolean view, boolean create, boolean delete) {
+        ValidadorArgumento.validarObligatorio(name, "Debes ingresar un nombre para reconstruir");
+        ValidadorArgumento.validarObligatorio(edit, "Debes ingresar true o false para editar ");
+        ValidadorArgumento.validarObligatorio(view, "Debes ingresar true o false para visualizar");
+        ValidadorArgumento.validarObligatorio(create, "Debes ingresar true o false para crear");
+        ValidadorArgumento.validarObligatorio(delete, "Debes ingresar true o false para borrar");
+        return new Modulo(name, edit, view, create, delete);
+    }
 
     public Long getIdModulo() {
         return idModulo;
