@@ -1,1 +1,1 @@
-select * from modulerol where rol_id = :rol_id
+select module_id from modulerol where rol_id = :rol_id

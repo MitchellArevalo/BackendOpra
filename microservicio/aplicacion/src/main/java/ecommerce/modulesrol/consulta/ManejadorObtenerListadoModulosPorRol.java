@@ -1,5 +1,6 @@
 package ecommerce.modulesrol.consulta;
 
+import ecommerce.modules.modelo.entidad.Modulo;
 import ecommerce.modulesrol.modelo.entidad.ModulesRol;
 import ecommerce.modulesrol.puerto.dao.DaoModulesRol;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ public class ManejadorObtenerListadoModulosPorRol {
         this.daoModulesRol = daoModulesRol;
     }
 
-    public List<ModulesRol> ejecutar(Long id){
+    public List<Modulo> ejecutar(Long id){
         return this.daoModulesRol.getModulesByIDRol(id);
     }
 }
