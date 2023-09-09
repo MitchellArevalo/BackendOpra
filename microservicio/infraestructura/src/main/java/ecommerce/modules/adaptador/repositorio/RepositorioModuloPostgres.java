@@ -41,6 +41,7 @@ public class RepositorioModuloPostgres implements RepositorioModule {
     @Override
     public void update(Modulo module, Long id) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id",id);
         parameterSource.addValue("module_name",module.getName());
         parameterSource.addValue("module_edit",module.isEdit());
         parameterSource.addValue("module_create",module.isCreate());
