@@ -22,7 +22,7 @@ spring:
       #password: ENC(WLKQN/msnnlVX90MC6nHST4Igj5pVN8l)
 
       #DB CleverCloud
-      dbcUrl: jdbc:postgresql://b2n9dcrfm4mgkufko9fj-postgresql.services.clever-cloud.com:5432/b2n9dcrfm4mgkufko9fj?currentSchema=opraecommerce
+      jdbcUrl: jdbc:postgresql://b2n9dcrfm4mgkufko9fj-postgresql.services.clever-cloud.com:5432/b2n9dcrfm4mgkufko9fj?currentSchema=opraecommerce
       username: u6vjaaevroznppydqhka
       password: ynRRRSeXmhRNzHIN870Mvcwj7XZjzP
       flyway:
