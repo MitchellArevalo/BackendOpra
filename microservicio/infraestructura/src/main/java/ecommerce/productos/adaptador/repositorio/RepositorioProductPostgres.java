@@ -7,6 +7,8 @@ import ecommerce.productos.puerto.repositorio.RepositorioProduct;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 @Repository
 public class RepositorioProductPostgres implements RepositorioProduct {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
@@ -25,6 +27,11 @@ public class RepositorioProductPostgres implements RepositorioProduct {
     @SqlStatement(namespace = "producto", value = "updateProduct")
     private static String sqlUpdateProduct;
 
+    @SqlStatement(namespace = "producto", value = "addToStock")
+    private static String sqlAddStock;
+
+    @SqlStatement(namespace = "producto", value = "removeToStock")
+    private static String sqlRemoveStock;
 
 
     @Override
@@ -62,5 +69,21 @@ public class RepositorioProductPostgres implements RepositorioProduct {
         parameterSource.addValue("id", id);
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlDeleteProduct, parameterSource);
 
+    }
+
+    @Override
+    public void addToStock(Long id, BigDecimal quantityStock) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        parameterSource.addValue("product_stock", quantityStock);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlAddStock, parameterSource);
+    }
+
+    @Override
+    public void removeToStock(Long id, BigDecimal quantityStock) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        parameterSource.addValue("product_stock", quantityStock);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlRemoveStock, parameterSource);
     }
 }

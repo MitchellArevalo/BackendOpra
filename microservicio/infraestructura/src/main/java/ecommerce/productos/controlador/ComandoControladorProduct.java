@@ -34,14 +34,14 @@ public class ComandoControladorProduct {
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
-    @Operation(summary = "Eliminar Employee", description = "Metodo para eliminar product")
+    @Operation(summary = "Eliminar producto", description = "Metodo para eliminar product")
     public ResponseEntity<String> borrar(@PathVariable("id") Long id){
         return manejadorDeleteProduct.ejecutar(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
-    @Operation(summary = "Actualizar Employee", description = "Metodo para actualizar product")
+    @Operation(summary = "Actualizar producto", description = "Metodo para actualizar product")
     public ResponseEntity<String> actualizar(@RequestBody ComandoSolicitudCrearProduct product, @PathVariable("id") Long id){
         return manejadorActualizarProduct.ejecutar(product, id);
     }

@@ -1,0 +1,1 @@
+select * from inputproducts where product_id = :product_id

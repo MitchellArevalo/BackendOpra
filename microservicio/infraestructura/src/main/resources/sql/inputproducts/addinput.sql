@@ -1,0 +1,2 @@
+insert into inputproducts(employee_id, product_id, input_product_cost, input_description, input_quantity, input_date)
+values (:employee_id, :product_id, :input_product_cost, :input_description, :input_quantity, :input_date)

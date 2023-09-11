@@ -6,6 +6,8 @@ import ecommerce.cliente.servicio.ServicioCrearCliente;
 import ecommerce.employees.puerto.repositorio.RepositorioEmployee;
 import ecommerce.employees.servicios.ServicioActualizarEmployee;
 import ecommerce.employees.servicios.ServicioCrearEmployee;
+import ecommerce.inputs.puerto.repositorio.RepositorioInputProduct;
+import ecommerce.inputs.servicio.ServiciosInputProduct;
 import ecommerce.modules.puerto.repositorio.RepositorioModule;
 import ecommerce.modules.servicios.ServicioCrearModulo;
 import ecommerce.modules.servicios.ServiciosModulo;
@@ -76,5 +78,10 @@ public class BeanServicio {
     @Bean
     public ServiciosModulo serviciosModulo(RepositorioModule repositorioModule){
         return new ServiciosModulo(repositorioModule);
+    }
+
+    @Bean
+    public ServiciosInputProduct serviciosInputProduct(RepositorioInputProduct repositorioInputProduct, RepositorioProduct repositorioProduct){
+        return new ServiciosInputProduct(repositorioInputProduct, repositorioProduct);
     }
 }
