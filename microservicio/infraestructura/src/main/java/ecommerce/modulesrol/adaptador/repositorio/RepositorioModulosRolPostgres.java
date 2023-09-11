@@ -33,12 +33,15 @@ public class RepositorioModulosRolPostgres implements RepositorioModulesRol {
     }
 
     @Override
-    public void update(ModulesRol modulesRol, Long id) {
+    public void update(Long idRol, Long idModulo) {
 
     }
 
     @Override
     public void delete(Long idRol, Long idModulo) {
-
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("rol_id", idRol);
+        parameterSource.addValue("module_id", idModulo);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlDeleteModuloRol, parameterSource);
     }
 }

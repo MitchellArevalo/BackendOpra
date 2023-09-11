@@ -5,12 +5,14 @@ import ecommerce.modules.modelo.entidad.Modulo;
 import ecommerce.roles.modelo.entidad.Rol;
 
 public class ModulesRol {
-    private Long idModulo;
+
+
+    private Long idModulosRol;
     private final Modulo modulo;
     private final Rol rol;
 
-    public ModulesRol(Long idModulo, Modulo modulo, Rol rol) {
-        this.idModulo = idModulo;
+    public ModulesRol(Long idModulosRol, Modulo modulo, Rol rol) {
+        this.idModulosRol = idModulosRol;
         this.modulo = modulo;
         this.rol = rol;
     }
@@ -32,6 +34,9 @@ public class ModulesRol {
         return new ModulesRol(modulo, rol);
     }
 
+    public Long getIdModulosRol() {
+        return idModulosRol;
+    }
 
 
     public Modulo getModulo() {

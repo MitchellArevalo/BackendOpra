@@ -17,4 +17,8 @@ public class ServiciosModulesRol {
     public void eliminar(Long idRol, Long idModulo){
         this.repositorioModulesRol.delete(idRol, idModulo);
     }
+
+    public void actualizar(Long idRol, Long idModulo){
+        this.repositorioModulesRol.update(idRol, idModulo);
+    }
 }

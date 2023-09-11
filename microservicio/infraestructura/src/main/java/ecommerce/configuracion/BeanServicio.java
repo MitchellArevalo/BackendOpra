@@ -8,6 +8,7 @@ import ecommerce.employees.servicios.ServicioActualizarEmployee;
 import ecommerce.employees.servicios.ServicioCrearEmployee;
 import ecommerce.modules.puerto.repositorio.RepositorioModule;
 import ecommerce.modules.servicios.ServicioCrearModulo;
+import ecommerce.modules.servicios.ServiciosModulo;
 import ecommerce.modulesrol.puerto.repositorio.RepositorioModulesRol;
 import ecommerce.modulesrol.servicio.ServiciosModulesRol;
 import ecommerce.notifications.puerto.repositorio.RepositorioNotification;
@@ -70,5 +71,10 @@ public class BeanServicio {
     @Bean
     public ServiciosProduct serviciosProduct(RepositorioProduct repositorioProduct){
         return new ServiciosProduct(repositorioProduct);
+    }
+
+    @Bean
+    public ServiciosModulo serviciosModulo(RepositorioModule repositorioModule){
+        return new ServiciosModulo(repositorioModule);
     }
 }

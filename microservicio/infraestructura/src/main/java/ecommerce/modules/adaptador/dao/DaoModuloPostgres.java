@@ -27,6 +27,7 @@ public class DaoModuloPostgres implements DaoModule {
     private static String sqlObtenerListado;
 
 
+
     @Override
     public List<Modulo> getAllModules() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerListado, mapeoModulo);
@@ -39,4 +40,6 @@ public class DaoModuloPostgres implements DaoModule {
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate
                 .getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorID, parameterSource, mapeoModulo));
     }
+
+
 }
