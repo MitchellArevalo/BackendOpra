@@ -13,4 +13,8 @@ public class ServiciosModulesRol {
     public Long crear(ModulesRol modulesRol){
         return this.repositorioModulesRol.crear(modulesRol);
     }
+
+    public void eliminar(Long idRol, Long idModulo){
+        this.repositorioModulesRol.delete(idRol, idModulo);
+    }
 }

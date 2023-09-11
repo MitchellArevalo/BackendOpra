@@ -16,15 +16,15 @@ spring:
    datasource:
       driver-class-name: org.postgresql.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      #jdbcUrl: jdbc:postgresql://localhost:5432/opradesign?currentSchema=opraecommerce
-      #username: postgres
+      jdbcUrl: jdbc:postgresql://localhost:5432/opradesign?currentSchema=opraecommerce
+      username: postgres
       #password: admin
-      #password: ENC(WLKQN/msnnlVX90MC6nHST4Igj5pVN8l)
+      password: ENC(WLKQN/msnnlVX90MC6nHST4Igj5pVN8l)
 
       #DB CleverCloud
-      jdbcUrl: jdbc:postgresql://b2n9dcrfm4mgkufko9fj-postgresql.services.clever-cloud.com:5432/b2n9dcrfm4mgkufko9fj?currentSchema=opraecommerce
-      username: u6vjaaevroznppydqhka
-      password: ynRRRSeXmhRNzHIN870Mvcwj7XZjzP
+      #dbcUrl: jdbc:postgresql://b2n9dcrfm4mgkufko9fj-postgresql.services.clever-cloud.com:5432/b2n9dcrfm4mgkufko9fj?currentSchema=opraecommerce
+      #username: u6vjaaevroznppydqhka
+      #password: ynRRRSeXmhRNzHIN870Mvcwj7XZjzP
       flyway:
          baseline-on-migrate: true
          baselineOnMigrate: true

@@ -1,5 +1,6 @@
 package ecommerce.modulesrol.controlador;
 
+import ecommerce.modules.modelo.entidad.Modulo;
 import ecommerce.modulesrol.consulta.ManejadorObtenerListadoModulosPorRol;
 import ecommerce.modulesrol.consulta.ManejadorObtenerModuloRol;
 import ecommerce.modulesrol.consulta.ManejadorObtenerModulosRol;
@@ -37,7 +38,7 @@ public class ConsultaControladoModulosRol {
     }
 
     @GetMapping("/rol/{rol_id}")
-    public List<ModulesRol> obtenerModulosByRol(@PathVariable("rol_id") Long id){
+    public List<Modulo> obtenerModulosByRol(@PathVariable("rol_id") Long id){
         return listadoModulosPorRol.ejecutar(id);
     }
 

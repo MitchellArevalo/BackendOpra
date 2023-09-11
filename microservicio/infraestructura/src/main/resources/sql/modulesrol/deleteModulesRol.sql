@@ -1,0 +1,1 @@
+delete from modulerol where rol_id = :rol_id AND module_id = :module_id

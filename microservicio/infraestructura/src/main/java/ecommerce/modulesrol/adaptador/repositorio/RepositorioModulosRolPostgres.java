@@ -38,7 +38,7 @@ public class RepositorioModulosRolPostgres implements RepositorioModulesRol {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long idRol, Long idModulo) {
 
     }
 }

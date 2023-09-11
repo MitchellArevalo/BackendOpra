@@ -6,5 +6,5 @@ public interface RepositorioModulesRol {
     Long crear(ModulesRol modulesRol);
     void update(ModulesRol modulesRol, Long id);
 
-    void delete(Long id);
+    void delete(Long idRol, Long idModulo);
 }
