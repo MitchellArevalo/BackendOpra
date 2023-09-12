@@ -3,22 +3,22 @@ package ecommerce.outputsproducts.adaptador.dao;
 import ecommerce.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import ecommerce.infraestructura.jdbc.EjecucionBaseDeDatos;
 import ecommerce.infraestructura.jdbc.sqlstatement.SqlStatement;
-import ecommerce.inputs.modelo.entidad.InputProduct;
-import ecommerce.inputs.puerto.dao.DaoInputProduct;
-import ecommerce.inputsproducts.adaptador.repositorio.MapeoInputProduct;
+import ecommerce.outputproducts.modelo.entidad.OutputProduct;
+import ecommerce.outputproducts.puerto.dao.DaoOutputProduct;
+import ecommerce.outputsproducts.adaptador.repositorio.MapeoOutputProduct;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class DaoOutputProductPostgres implements DaoInputProduct {
+public class DaoOutputProductPostgres implements DaoOutputProduct {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
-    private final MapeoInputProduct mapeoInputProduct;
+    private final MapeoOutputProduct mapeoOutputProduct;
 
-    public DaoOutputProductPostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, MapeoInputProduct mapeoInputProduct) {
+    public DaoOutputProductPostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, MapeoOutputProduct mapeoOutputProduct) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
-        this.mapeoInputProduct = mapeoInputProduct;
+        this.mapeoOutputProduct = mapeoOutputProduct;
     }
 
     @SqlStatement(namespace = "outputproducts", value = "getOutputProductById")
@@ -30,13 +30,23 @@ public class DaoOutputProductPostgres implements DaoInputProduct {
 
 
     @Override
-    public InputProduct getByID(Long id) {
+    public OutputProduct getByID(Long id) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", id);
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate
-                .getNamedParameterJdbcTemplate().queryForObject(sqlObtenerOutputProductByID, parameterSource, mapeoInputProduct));
+                .getNamedParameterJdbcTemplate().queryForObject(sqlObtenerOutputProductByID, parameterSource,mapeoOutputProduct));
     }
 
+    @Override
+    public List<OutputProduct> getAllOutputs() {
+        return null;
+    }
+
+    @Override
+    public List<OutputProduct> getAllOutputsByIdProduct(Long id) {
+        return null;
+    }
+/*
     @Override
     public List<InputProduct> getAllInputs() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerListaOutputProducts, mapeoInputProduct);
@@ -47,5 +57,5 @@ public class DaoOutputProductPostgres implements DaoInputProduct {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("product_id", id);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerListaOutputProductsByIDProduct, parameterSource, mapeoInputProduct);
-    }
+    }*/
 }

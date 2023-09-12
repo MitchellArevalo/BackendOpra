@@ -86,9 +86,10 @@ public class BeanServicio {
     public ServiciosInputProduct serviciosInputProduct(RepositorioInputProduct repositorioInputProduct, RepositorioProduct repositorioProduct){
         return new ServiciosInputProduct(repositorioInputProduct, repositorioProduct);
     }
-
     @Bean
     public ServiciosOutputProduct serviciosOutputProduct(RepositorioOutputProduct repositorioOutputProduct, RepositorioProduct repositorioProduct){
         return new ServiciosOutputProduct(repositorioOutputProduct, repositorioProduct);
     }
+
+
 }
