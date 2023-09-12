@@ -19,17 +19,39 @@ public class RepositorioClientePostgres implements RepositorioCliente {
     @SqlStatement(namespace = "cliente", value="crearcliente")
     private static String sqlCrearCliente;
 
+    @SqlStatement(namespace = "cliente", value="updateCliente")
+    private static String sqlUpdateCliente;
+    @SqlStatement(namespace = "cliente", value="deleteCliente")
+    private static String sqlDeleteCliente;
     @Override
     public Long crear(Cliente cliente) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", cliente.getIdCliente());
-        parameterSource.addValue("cliente_name", cliente.getNombre());
-        parameterSource.addValue("cliente_email", cliente.getEmail());
-        parameterSource.addValue("cliente_identity", cliente.getDocumento());
-        parameterSource.addValue("cliente_address", cliente.getDireccion());
-        parameterSource.addValue("cliente_phone_number", cliente.getNumeroTelefonico());
-        parameterSource.addValue("cliente_username", cliente.getUsername());
-        parameterSource.addValue("cliente_password", cliente.getContrasena());
+        parameterSource.addValue("client_name", cliente.getNombre());
+        parameterSource.addValue("client_email", cliente.getEmail());
+        parameterSource.addValue("client_identity", cliente.getDocumento());
+        parameterSource.addValue("client_address", cliente.getDireccion());
+        parameterSource.addValue("client_phone_number", cliente.getNumeroTelefonico());
+        parameterSource.addValue("client_password", cliente.getContrasena());
         return this.customNamedParameterJdbcTemplate.crear(parameterSource, sqlCrearCliente);
+    }
+
+    @Override
+    public void delete(Long id) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlDeleteCliente, parameterSource);
+    }
+
+    @Override
+    public void update(Cliente cliente, Long idCliente) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id",idCliente);
+        parameterSource.addValue("client_name", cliente.getNombre());
+        parameterSource.addValue("client_email", cliente.getEmail());
+        parameterSource.addValue("client_identity", cliente.getDocumento());
+        parameterSource.addValue("client_address", cliente.getDireccion());
+        parameterSource.addValue("client_phone_number", cliente.getNumeroTelefonico());
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlUpdateCliente, parameterSource);
     }
 }

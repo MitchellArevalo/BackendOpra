@@ -9,11 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ComandoSolicitudCrearCliente {
+public class ComandoSolicitudActualizarCliente {
     private String name;
     private String email;
     private String document;
     private String address;
     private String phoneNumber;
-    private String password;
 }

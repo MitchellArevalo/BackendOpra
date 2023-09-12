@@ -2,7 +2,7 @@ package ecommerce.configuracion;
 import ecommerce.category.puerto.repositorio.RepositorioCategory;
 import ecommerce.category.servicio.ServiciosCategory;
 import ecommerce.cliente.puerto.repositorio.RepositorioCliente;
-import ecommerce.cliente.servicio.ServicioCrearCliente;
+import ecommerce.cliente.servicio.ServiciosCliente;
 import ecommerce.employees.puerto.repositorio.RepositorioEmployee;
 import ecommerce.employees.servicios.ServicioActualizarEmployee;
 import ecommerce.employees.servicios.ServicioCrearEmployee;
@@ -30,8 +30,8 @@ import org.springframework.context.annotation.Configuration;
 public class BeanServicio {
     //region Cliente
     @Bean
-    public ServicioCrearCliente servicioCrearCliente (RepositorioCliente repositorioCliente){
-        return new ServicioCrearCliente(repositorioCliente);
+    public ServiciosCliente servicioCrearCliente (RepositorioCliente repositorioCliente){
+        return new ServiciosCliente(repositorioCliente);
     }
     //endregion
 
