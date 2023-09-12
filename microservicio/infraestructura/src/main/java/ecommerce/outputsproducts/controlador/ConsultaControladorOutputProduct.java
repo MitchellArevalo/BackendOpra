@@ -1,9 +1,10 @@
 package ecommerce.outputsproducts.controlador;
 
-import ecommerce.inputproducts.consulta.ManejadorObtenerInputProductById;
-import ecommerce.inputproducts.consulta.ManejadorObtenerInputsProductByIdProduct;
-import ecommerce.inputproducts.consulta.ManejadorObtenerListaDeInputProducts;
 import ecommerce.inputs.modelo.entidad.InputProduct;
+import ecommerce.outputproducts.consulta.ManejadorObtenerListaDeOutputProducts;
+import ecommerce.outputproducts.consulta.ManejadorObtenerOutputProductById;
+import ecommerce.outputproducts.consulta.ManejadorObtenerOutputsProductByIdProduct;
+import ecommerce.outputproducts.modelo.entidad.OutputProduct;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,28 +17,29 @@ import java.util.List;
 @RequestMapping("/outputs")
 @Tag(name = "Controlador consulta outputs")
 public class ConsultaControladorOutputProduct {
-    private final ManejadorObtenerListaDeInputProducts manejadorObtenerListaDeInputProducts;
-    private final ManejadorObtenerInputProductById manejadorObtenerInputProductById;
-    private final ManejadorObtenerInputsProductByIdProduct manejadorObtenerInputsProductByIdProduct;
+    private final ManejadorObtenerListaDeOutputProducts manejadorObtenerListaDeOutputProducts;
+    private final ManejadorObtenerOutputProductById manejadorObtenerOutputProductById;
+    private final ManejadorObtenerOutputsProductByIdProduct manejadorObtenerOutputsProductByIdProduct;
 
-    public ConsultaControladorOutputProduct(ManejadorObtenerListaDeInputProducts manejadorObtenerListaDeInputProducts, ManejadorObtenerInputProductById manejadorObtenerInputProductById, ManejadorObtenerInputsProductByIdProduct manejadorObtenerInputsProductByIdProduct) {
-        this.manejadorObtenerListaDeInputProducts = manejadorObtenerListaDeInputProducts;
-        this.manejadorObtenerInputProductById = manejadorObtenerInputProductById;
-        this.manejadorObtenerInputsProductByIdProduct = manejadorObtenerInputsProductByIdProduct;
+    public ConsultaControladorOutputProduct(ManejadorObtenerListaDeOutputProducts manejadorObtenerListaDeOutputProducts, ManejadorObtenerOutputProductById manejadorObtenerOutputProductById, ManejadorObtenerOutputsProductByIdProduct manejadorObtenerOutputsProductByIdProduct) {
+        this.manejadorObtenerListaDeOutputProducts = manejadorObtenerListaDeOutputProducts;
+        this.manejadorObtenerOutputProductById = manejadorObtenerOutputProductById;
+        this.manejadorObtenerOutputsProductByIdProduct = manejadorObtenerOutputsProductByIdProduct;
     }
+
 
     @GetMapping()
     @Operation(summary = "Visualizar todos", description = "Metodo utilizado para consultar los datos de personas")
-    public List<InputProduct> obtenerListaInputProducts(){
-        return manejadorObtenerListaDeInputProducts.ejecutar();
+    public List<OutputProduct> obtenerListaInputProducts(){
+        return manejadorObtenerListaDeOutputProducts.ejecutar();
     }
     @GetMapping("/{id}")
-    public InputProduct obtenerInputProduct(@PathVariable("id") Long id){
-        return manejadorObtenerInputProductById.ejecutar(id);
+    public OutputProduct obtenerInputProduct(@PathVariable("id") Long id){
+        return manejadorObtenerOutputProductById.ejecutar(id);
     }
 
     @GetMapping("/product/{id}")
-    public List<InputProduct> obtenerListaInputsByIdProduct(@PathVariable("id") Long id){
-        return manejadorObtenerInputsProductByIdProduct.ejecutar(id);
+    public List<OutputProduct> obtenerListaInputsByIdProduct(@PathVariable("id") Long id){
+        return manejadorObtenerOutputsProductByIdProduct.ejecutar(id);
     }
 }
