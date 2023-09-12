@@ -4,12 +4,15 @@ import ecommerce.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import ecommerce.infraestructura.jdbc.sqlstatement.SqlStatement;
 import ecommerce.inputs.modelo.entidad.InputProduct;
 import ecommerce.inputs.puerto.repositorio.RepositorioInputProduct;
+import ecommerce.outputproducts.modelo.entidad.OutputProduct;
+import ecommerce.outputproducts.puerto.repositorio.RepositorioOutputProduct;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class RepositorioOutputProductPostgres implements RepositorioInputProduct {
+public class RepositorioOutputProductPostgres implements RepositorioOutputProduct {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+
 
     public RepositorioOutputProductPostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -18,7 +21,7 @@ public class RepositorioOutputProductPostgres implements RepositorioInputProduct
     @SqlStatement(namespace = "outputproducts", value = "addoutput")
     private static String sqlCrear;
 
-
+/*
     @Override
     public Long crear(InputProduct inputProduct) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -29,5 +32,10 @@ public class RepositorioOutputProductPostgres implements RepositorioInputProduct
         parameterSource.addValue("input_description", inputProduct.getDescription());
         parameterSource.addValue("input_date", inputProduct.getDateInput());
         return this.customNamedParameterJdbcTemplate.crear(parameterSource, sqlCrear);
+    }
+*/
+    @Override
+    public Long crear(OutputProduct outputProduct) {
+        return null;
     }
 }

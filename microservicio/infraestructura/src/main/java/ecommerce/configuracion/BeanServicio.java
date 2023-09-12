@@ -15,6 +15,8 @@ import ecommerce.modulesrol.puerto.repositorio.RepositorioModulesRol;
 import ecommerce.modulesrol.servicio.ServiciosModulesRol;
 import ecommerce.notifications.puerto.repositorio.RepositorioNotification;
 import ecommerce.notifications.servicio.ServiciosNotifications;
+import ecommerce.outputproducts.puerto.repositorio.RepositorioOutputProduct;
+import ecommerce.outputproducts.servicio.ServiciosOutputProduct;
 import ecommerce.personas.puerto.repositorio.RepositorioPersona;
 import ecommerce.personas.servicio.ServicioCrearPersona;
 import ecommerce.productos.puerto.repositorio.RepositorioProduct;
@@ -84,4 +86,10 @@ public class BeanServicio {
     public ServiciosInputProduct serviciosInputProduct(RepositorioInputProduct repositorioInputProduct, RepositorioProduct repositorioProduct){
         return new ServiciosInputProduct(repositorioInputProduct, repositorioProduct);
     }
+    @Bean
+    public ServiciosOutputProduct serviciosOutputProduct(RepositorioOutputProduct repositorioOutputProduct, RepositorioProduct repositorioProduct){
+        return new ServiciosOutputProduct(repositorioOutputProduct, repositorioProduct);
+    }
+
+
 }
