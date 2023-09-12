@@ -19,7 +19,8 @@ spring:
       jdbcUrl: jdbc:postgresql://localhost:5432/opradesign?currentSchema=opraecommerce
       username: postgres
       #password: admin
-      password: ENC(WLKQN/msnnlVX90MC6nHST4Igj5pVN8l)
+      #password: ENC(WLKQN/msnnlVX90MC6nHST4Igj5pVN8l)
+      password: ENC(WZoFQtAJLsCyheupuUsSkHCwSnCGGy5u)
 
       #DB CleverCloud
       #jdbcUrl: jdbc:postgresql://b2n9dcrfm4mgkufko9fj-postgresql.services.clever-cloud.com:5432/b2n9dcrfm4mgkufko9fj?currentSchema=opraecommerce
