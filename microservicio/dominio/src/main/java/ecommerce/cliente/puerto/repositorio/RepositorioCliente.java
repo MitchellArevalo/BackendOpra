@@ -7,4 +7,5 @@ public interface RepositorioCliente {
     void delete(Long id);
 
     void update(Cliente cliente, Long idCliente);
+    Cliente autenticar(String email, String password);
 }

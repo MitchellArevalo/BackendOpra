@@ -19,4 +19,7 @@ public class ServiciosCliente {
     public void delete(Long id){
         this.repositorioCliente.delete(id);
     }
+    public Cliente autenticar(String email, String password){
+        return this.repositorioCliente.autenticar(email, password);
+    }
 }

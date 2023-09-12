@@ -3,6 +3,7 @@ package ecommerce.cliente.adaptador.repositorio;
 import ecommerce.cliente.modelo.entidad.Cliente;
 import ecommerce.cliente.puerto.repositorio.RepositorioCliente;
 import ecommerce.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
+import ecommerce.infraestructura.jdbc.EjecucionBaseDeDatos;
 import ecommerce.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Repository;
 public class RepositorioClientePostgres implements RepositorioCliente {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+    private final MapeoCliente mapeoCliente;
 
-    public RepositorioClientePostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
+    public RepositorioClientePostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, MapeoCliente mapeoCliente) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
+        this.mapeoCliente = mapeoCliente;
     }
 
     @SqlStatement(namespace = "cliente", value="crearcliente")
@@ -23,6 +26,9 @@ public class RepositorioClientePostgres implements RepositorioCliente {
     private static String sqlUpdateCliente;
     @SqlStatement(namespace = "cliente", value="deleteCliente")
     private static String sqlDeleteCliente;
+
+    @SqlStatement(namespace = "cliente", value="autenticarCliente")
+    private static String sqlAutenticarCliente;
     @Override
     public Long crear(Cliente cliente) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -53,5 +59,14 @@ public class RepositorioClientePostgres implements RepositorioCliente {
         parameterSource.addValue("client_address", cliente.getDireccion());
         parameterSource.addValue("client_phone_number", cliente.getNumeroTelefonico());
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlUpdateCliente, parameterSource);
+    }
+
+    @Override
+    public Cliente autenticar(String email, String password) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("client_email", email);
+        parameterSource.addValue("client_password", password);
+        return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate
+                .getNamedParameterJdbcTemplate().queryForObject(sqlAutenticarCliente, parameterSource, mapeoCliente));
     }
 }
