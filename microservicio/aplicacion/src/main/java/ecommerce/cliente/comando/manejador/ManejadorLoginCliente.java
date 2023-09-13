@@ -17,7 +17,11 @@ public class ManejadorLoginCliente {
 
     public ResponseEntity<Cliente> ejecutar(ComandoSolicitudAutenticarCliente cliente){
         try{
-            return new ResponseEntity<>(this.serviciosCliente.autenticar(cliente.getEmail(), cliente.getPassword()), HttpStatus.ACCEPTED);
+            Cliente clienteValor = this.serviciosCliente.autenticar(cliente.getEmail(), cliente.getPassword());
+            if (clienteValor != null){
+                return new ResponseEntity<>(clienteValor, HttpStatus.ACCEPTED);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (RuntimeException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

@@ -19,6 +19,6 @@ public class MapeoCliente implements RowMapper<Cliente>, MapperResult {
         String direccion = rs.getString("client_address");
         String numeroTelefonico = rs.getString("client_phone_number");
         String contrasena = rs.getString("client_password");
-        return Cliente.reconstruir(idCliente,nombre,documento,numeroTelefonico,direccion,email,contrasena);
+        return Cliente.reconstruir(idCliente,nombre,email,documento,direccion,numeroTelefonico,contrasena);
     }
 }

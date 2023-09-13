@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class GenerarSolicitudACliente {
     public Cliente crear(ComandoSolicitudCrearCliente comandoSolicitudCrearCliente){
-        return Cliente.crear(comandoSolicitudCrearCliente.getName(), comandoSolicitudCrearCliente.getEmail(), comandoSolicitudCrearCliente.getDocument(),
-                comandoSolicitudCrearCliente.getAddress(), comandoSolicitudCrearCliente.getPhoneNumber(), comandoSolicitudCrearCliente.getPassword());
+        return Cliente.crear(comandoSolicitudCrearCliente.getName(), comandoSolicitudCrearCliente.getEmail(),
+                comandoSolicitudCrearCliente.getDocument(), comandoSolicitudCrearCliente.getAddress(),
+                comandoSolicitudCrearCliente.getPhoneNumber(), comandoSolicitudCrearCliente.getPassword());
     }
 }
