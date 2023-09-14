@@ -81,9 +81,14 @@ CREATE TABLE employees
 CREATE TABLE sales
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-    sale_product_id int not null,
     employee_id int not null,
     client_id int not null,
+    sale_amount decimal default 0,
+    sale_profit decimal default 0,
+    sale_margin_profit varchar(10) default '0',
+    sale_type varchar(255),
+    sale_date TIMESTAMP default CURRENT_TIMESTAMP,
+    sale_status varchar(100) default 'PENDIENTE',
     PRIMARY KEY (id),
     CONSTRAINT employee_id FOREIGN KEY (employee_id)
         REFERENCES employees (id)
@@ -99,15 +104,21 @@ CREATE TABLE sales
 create table saleProducts
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    sale_id int not null,
     product_id int not null,
-    product_quantity int not null,
-    product_unit_price decimal not null,
-    product_profit decimal not null,
-    product_total decimal not null,
-    PRIMARY KEY (id)
+    saleproduct_quantity int not null,
+    saleproduct_sale_price decimal default null,
+    saleproduct_profit decimal not null,
+    saleproduct_margin_profit varchar(100),
+    saleproduct_total decimal not null,
+    saleproduct_date TIMESTAMP default CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT sale_id FOREIGN KEY (sale_id)
+                 REFERENCES sales (id)
+                 ON UPDATE NO ACTION
+                 ON DELETE NO ACTION
 );
 
-ALTER TABLE sales ADD CONSTRAINT sale_product_id FOREIGN KEY (sale_product_id) REFERENCES saleProducts(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 CREATE TABLE products
 (
@@ -125,6 +136,21 @@ CREATE TABLE products
 );
 
 ALTER TABLE saleProducts ADD CONSTRAINT product_id FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+CREATE TABLE payments
+(
+    id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 ),
+    sale_id int NOT NULL,
+    payment_price decimal not null,
+    payment_date TIMESTAMP default CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT sale_id FOREIGN KEY (sale_id)
+                     REFERENCES sales (id)
+                     ON UPDATE NO ACTION
+                     ON DELETE NO ACTION
+
+);
+
 
 CREATE TABLE category
 (
