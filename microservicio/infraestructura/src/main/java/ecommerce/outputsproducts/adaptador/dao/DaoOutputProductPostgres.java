@@ -39,23 +39,13 @@ public class DaoOutputProductPostgres implements DaoOutputProduct {
 
     @Override
     public List<OutputProduct> getAllOutputs() {
-        return null;
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerListaOutputProducts, mapeoOutputProduct);
     }
 
     @Override
     public List<OutputProduct> getAllOutputsByIdProduct(Long id) {
-        return null;
-    }
-/*
-    @Override
-    public List<InputProduct> getAllInputs() {
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerListaOutputProducts, mapeoInputProduct);
-    }
-
-    @Override
-    public List<InputProduct> getAllInputsByIdProduct(Long id) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("product_id", id);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerListaOutputProductsByIDProduct, parameterSource, mapeoInputProduct);
-    }*/
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerListaOutputProductsByIDProduct, parameterSource, mapeoOutputProduct);
+    }
 }

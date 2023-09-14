@@ -4,6 +4,8 @@ import ecommerce.inputs.modelo.entidad.InputProduct;
 import ecommerce.inputs.puerto.repositorio.RepositorioInputProduct;
 import ecommerce.productos.puerto.repositorio.RepositorioProduct;
 
+import java.math.BigDecimal;
+
 public class ServiciosInputProduct {
     private final RepositorioInputProduct repositorioInputProduct;
     private final RepositorioProduct repositorioProduct;
@@ -14,7 +16,8 @@ public class ServiciosInputProduct {
 
     public Long guardar(InputProduct inputProduct){
         try {
-            this.repositorioProduct.addToStock(inputProduct.getProduct().getId(), inputProduct.getQuantityProduct());
+            BigDecimal addStock = BigDecimal.valueOf(inputProduct.getProduct().getStock()).add(inputProduct.getQuantityProduct());
+            this.repositorioProduct.addToStock(inputProduct.getProduct().getId(), addStock);
             return this.repositorioInputProduct.crear(inputProduct);
         }
         catch (RuntimeException e){

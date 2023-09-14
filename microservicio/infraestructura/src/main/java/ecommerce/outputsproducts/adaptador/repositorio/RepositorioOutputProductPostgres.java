@@ -36,6 +36,12 @@ public class RepositorioOutputProductPostgres implements RepositorioOutputProduc
 */
     @Override
     public Long crear(OutputProduct outputProduct) {
-        return null;
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("employee_id", outputProduct.getEmployee().getIdEmployee());
+        parameterSource.addValue("product_id", outputProduct.getProduct().getId());
+        parameterSource.addValue("output_quantity", outputProduct.getQuantityProduct());
+        parameterSource.addValue("output_description", outputProduct.getDescription());
+        parameterSource.addValue("output_date", outputProduct.getDateOutput());
+        return this.customNamedParameterJdbcTemplate.crear(parameterSource, sqlCrear);
     }
 }
