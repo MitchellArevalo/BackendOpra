@@ -1,7 +1,6 @@
 package ecommerce.outputproducts.comando.manejador;
 
 import ecommerce.ComandoRespuesta;
-import ecommerce.inputproducts.comando.fabrica.GenerarSolicitudCrearInputProduct;
 import ecommerce.manejador.ManejadorComandoRespuesta;
 import ecommerce.outputproducts.comando.ComandoSolicitudCrearOutputProduct;
 import ecommerce.outputproducts.comando.fabrica.GenerarSolicitudCrearOutputProduct;
@@ -21,5 +20,6 @@ public class ManejadorCrearOutputProduct implements ManejadorComandoRespuesta<Co
     @Override
     public ComandoRespuesta<Long> ejecutar(ComandoSolicitudCrearOutputProduct comando) {
         return new ComandoRespuesta<>(serviciosOutputProduct.guardar(generarSolicitudCrearOutputProduct.generar(comando)));
+
     }
 }

@@ -1,6 +1,7 @@
 package ecommerce.outputsproducts.controlador;
 
 import ecommerce.ComandoRespuesta;
+import ecommerce.infraestructura.error.ManejadorError;
 import ecommerce.inputproducts.comando.manejador.ManejadorCrearInputProduct;
 import ecommerce.outputproducts.comando.ComandoSolicitudCrearOutputProduct;
 import ecommerce.outputproducts.comando.manejador.ManejadorCrearOutputProduct;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/outputs")
 @Tag(name = "Controlador comando outputs")
-public class ComandoControladorOutputProduct {
+public class ComandoControladorOutputProduct  {
     private final ManejadorCrearOutputProduct manejadorCrearOutputProduct;
 
     public ComandoControladorOutputProduct(ManejadorCrearOutputProduct manejadorCrearOutputProduct) {
