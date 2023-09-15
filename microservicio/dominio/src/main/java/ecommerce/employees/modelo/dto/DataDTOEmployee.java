@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class DataDTOEmployee implements UserDetails {
+public class DataDTOEmployee {
     private Long idEmployee;
     private String name;
     private String email;
@@ -30,39 +30,24 @@ public class DataDTOEmployee implements UserDetails {
         return new DataDTOEmployee(idEmployee, name, email, document, address);
     }
 
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public Long getIdEmployee() {
+        return idEmployee;
     }
 
-    @Override
-    public String getPassword() {
-        return null;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public String getUsername() {
+    public String getEmail() {
         return email;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public String getDocument() {
+        return document;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public String getAddress() {
+        return address;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

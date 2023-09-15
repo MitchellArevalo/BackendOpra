@@ -3,7 +3,6 @@ package ecommerce.category.controlador;
 import ecommerce.category.consulta.ManejadorObtenerCategories;
 import ecommerce.category.consulta.ManejadorObtenerCategoryByID;
 import ecommerce.category.modelo.entidad.Category;
-import ecommerce.employees.modelo.entidad.Employee;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;

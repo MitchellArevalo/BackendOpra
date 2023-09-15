@@ -18,7 +18,7 @@ public class OutputProduct {
     private LocalDate dateOutput;
 
 
-    public OutputProduct(Long idOutput, Employee employee, Product product,BigDecimal quantityProduct, String description, LocalDate dateOutput) {
+    public OutputProduct(Long idOutput, Employee employee, Product product, BigDecimal quantityProduct, String description, LocalDate dateOutput) {
         this.idOutput = idOutput;
         this.employee = employee;
         this.product = product;

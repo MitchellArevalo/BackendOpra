@@ -31,15 +31,15 @@ public class Product {
     }
     public static Product reconstruir (Long id, String name, Category category, String itemCode, String size, BigDecimal cost, BigDecimal salesPrice, String description, String image, Integer stock) {
         ValidadorArgumento.validarObligatorio(id, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(name, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(category, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(itemCode, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(size, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(cost, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(salesPrice, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(description, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(image, "Debes ingresar el id para reconstruir");
-        ValidadorArgumento.validarObligatorio(stock, "Debes ingresar el id para reconstruir");
+        ValidadorArgumento.validarObligatorio(name, "Debes ingresar el name para reconstruir");
+        ValidadorArgumento.validarObligatorio(category, "Debes ingresar el category para reconstruir");
+        ValidadorArgumento.validarObligatorio(itemCode, "Debes ingresar el itemCode para reconstruir");
+        ValidadorArgumento.validarObligatorio(size, "Debes ingresar el size para reconstruir");
+        ValidadorArgumento.validarObligatorio(cost, "Debes ingresar el cost para reconstruir");
+        ValidadorArgumento.validarObligatorio(salesPrice, "Debes ingresar el salesPrice para reconstruir");
+        ValidadorArgumento.validarObligatorio(description, "Debes ingresar el description para reconstruir");
+        ValidadorArgumento.validarObligatorio(image, "Debes ingresar el image para reconstruir");
+        ValidadorArgumento.validarObligatorio(stock, "Debes ingresar el stock para reconstruir");
         return new Product(id, name, category, itemCode,size,cost,salesPrice,description,image,stock);
     }
 
@@ -51,8 +51,8 @@ public class Product {
         this.description = description;
         this.image = image;
         this.stock = 0;
-        setCost(new BigDecimal(123456789));
-        setSalesPrice(new BigDecimal(87654321));
+        setCost(new BigDecimal(90));
+        setSalesPrice(new BigDecimal(270));
     }
     public static Product crear(String name, Category category, String itemCode, String size, String description, String image) {
         ValidadorArgumento.validarObligatorio(name, "Debes ingresar el nombre para crear producto");

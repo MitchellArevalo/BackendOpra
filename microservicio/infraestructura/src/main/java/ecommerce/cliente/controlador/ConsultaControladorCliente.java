@@ -1,9 +1,9 @@
 package ecommerce.cliente.controlador;
 
+import ecommerce.cliente.consulta.ManejadorObtenerCantidadClientes;
 import ecommerce.cliente.consulta.ManejadorObtenerCliente;
 import ecommerce.cliente.consulta.ManejadorObtenerListaClientes;
 import ecommerce.cliente.modelo.entidad.Cliente;
-import ecommerce.modules.modelo.entidad.Modulo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +19,12 @@ import java.util.List;
 public class ConsultaControladorCliente {
     private final ManejadorObtenerCliente manejadorObtenerCliente;
     private final ManejadorObtenerListaClientes manejadorObtenerListaClientes;
+    private final ManejadorObtenerCantidadClientes manejadorObtenerCantidadClientes;
 
-    public ConsultaControladorCliente(ManejadorObtenerCliente manejadorObtenerCliente, ManejadorObtenerListaClientes manejadorObtenerListaClientes) {
+    public ConsultaControladorCliente(ManejadorObtenerCliente manejadorObtenerCliente, ManejadorObtenerListaClientes manejadorObtenerListaClientes, ManejadorObtenerCantidadClientes manejadorObtenerCantidadClientes) {
         this.manejadorObtenerCliente = manejadorObtenerCliente;
         this.manejadorObtenerListaClientes = manejadorObtenerListaClientes;
+        this.manejadorObtenerCantidadClientes = manejadorObtenerCantidadClientes;
     }
 
     @GetMapping()
@@ -33,5 +35,9 @@ public class ConsultaControladorCliente {
     @GetMapping("/{id}")
     public Cliente obtenerModulo(@PathVariable("id") Long id){
         return manejadorObtenerCliente.getClientById(id);
+    }
+    @GetMapping("/total")
+    public Long obtenerCantidadClientes(){
+        return this.manejadorObtenerCantidadClientes.ejecutar();
     }
 }

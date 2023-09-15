@@ -1,6 +1,5 @@
 package ecommerce.notifications.controlador;
 
-import ecommerce.employees.modelo.entidad.Employee;
 import ecommerce.notifications.consulta.ManejadorObtenerNotification;
 import ecommerce.notifications.consulta.ManejadorObtenerNotificationsByEmployee;
 import ecommerce.notifications.modelo.entidad.Notification;

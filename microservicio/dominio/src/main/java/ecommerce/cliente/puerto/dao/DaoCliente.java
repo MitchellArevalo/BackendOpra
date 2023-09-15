@@ -7,4 +7,6 @@ import java.util.List;
 public interface DaoCliente {
     List<Cliente> getAllClients();
     Cliente getClienteById(Long id);
+
+    Long getTotalClients();
 }

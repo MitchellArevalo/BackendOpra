@@ -1,6 +1,5 @@
 package ecommerce.employee.adaptador.repositorio;
 
-import ecommerce.employees.modelo.dto.DataDTOEmployee;
 import ecommerce.employees.modelo.entidad.Employee;
 import ecommerce.employees.puerto.repositorio.RepositorioEmployee;
 import ecommerce.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;

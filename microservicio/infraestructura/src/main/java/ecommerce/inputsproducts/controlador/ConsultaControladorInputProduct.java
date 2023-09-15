@@ -1,6 +1,5 @@
 package ecommerce.inputsproducts.controlador;
 
-import ecommerce.employees.modelo.entidad.Employee;
 import ecommerce.inputproducts.consulta.ManejadorObtenerInputProductById;
 import ecommerce.inputproducts.consulta.ManejadorObtenerInputsProductByIdProduct;
 import ecommerce.inputproducts.consulta.ManejadorObtenerListaDeInputProducts;

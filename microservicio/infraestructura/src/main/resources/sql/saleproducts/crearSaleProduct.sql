@@ -1,0 +1,2 @@
+insert into saleproducts(sale_id, product_id, saleproduct_quantity, saleproduct_sale_price, saleproduct_profit, saleproduct_margin_profit, saleproduct_total)
+values (:sale_id, :product_id, :saleproduct_quantity, :saleproduct_sale_price, :saleproduct_profit, :saleproduct_margin_profit, :saleproduct_total)

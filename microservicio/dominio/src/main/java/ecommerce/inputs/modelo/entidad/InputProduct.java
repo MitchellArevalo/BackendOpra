@@ -4,12 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import ecommerce.dominio.ValidadorArgumento;
 import ecommerce.employees.modelo.entidad.Employee;
 import ecommerce.productos.modelo.entidad.Product;
-import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class InputProduct {
     private Long idInput;

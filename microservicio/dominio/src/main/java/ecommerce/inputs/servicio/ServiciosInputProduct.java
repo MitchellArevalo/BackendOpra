@@ -25,4 +25,9 @@ public class ServiciosInputProduct {
         }
     }
 
+    private void actualizarPreciosProductos(Long id, BigDecimal costPriceProduct){
+        this.repositorioProduct.updateSalesPriceProduct(id, costPriceProduct);
+        this.repositorioProduct.updateCostPriceProduct(id, costPriceProduct);
+    }
+
 }
