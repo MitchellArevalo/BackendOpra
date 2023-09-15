@@ -1,9 +1,8 @@
 package ecommerce.sales.controlador;
 
+import ecommerce.sales.comando.fabrica.CantidadVentasLocalyWebsite;
 import ecommerce.sales.comando.fabrica.MesAnteriorConMesActual;
-import ecommerce.sales.consulta.ManejadorObtenerGananciasTotalesConMesAnterior;
-import ecommerce.sales.consulta.ManejadorObtenerListadoVentas;
-import ecommerce.sales.consulta.ManejadorObtenerSalePorID;
+import ecommerce.sales.consulta.*;
 import ecommerce.sales.modelo.entidad.Sale;
 import ecommerce.sales.puerto.dao.DaoSale;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,12 +20,16 @@ public class ConsultaControladorSale {
     private final ManejadorObtenerListadoVentas manejadorObtenerListadoVentas;
     private final DaoSale daoSale;
     private final ManejadorObtenerGananciasTotalesConMesAnterior manejadorObtenerGananciasTotalesConMesAnterior;
+    private final ManejadorObtenerVentasTotalesConMesAnterior manejadorObtenerVentasTotalesConMesAnterior;
+    private final ManejadorObtenerCantidadVentasEnLocalYWebsite manejadorObtenerCantidadVentasEnLocalYWebsite;
 
-    public ConsultaControladorSale(ManejadorObtenerSalePorID manejadorObtenerSalePorID, ManejadorObtenerListadoVentas manejadorObtenerListadoVentas, DaoSale daoSale, ManejadorObtenerGananciasTotalesConMesAnterior manejadorObtenerGananciasTotalesConMesAnterior) {
+    public ConsultaControladorSale(ManejadorObtenerSalePorID manejadorObtenerSalePorID, ManejadorObtenerListadoVentas manejadorObtenerListadoVentas, DaoSale daoSale, ManejadorObtenerGananciasTotalesConMesAnterior manejadorObtenerGananciasTotalesConMesAnterior, ManejadorObtenerVentasTotalesConMesAnterior manejadorObtenerVentasTotalesConMesAnterior, ManejadorObtenerCantidadVentasEnLocalYWebsite manejadorObtenerCantidadVentasEnLocalYWebsite) {
         this.manejadorObtenerSalePorID = manejadorObtenerSalePorID;
         this.manejadorObtenerListadoVentas = manejadorObtenerListadoVentas;
         this.daoSale = daoSale;
         this.manejadorObtenerGananciasTotalesConMesAnterior = manejadorObtenerGananciasTotalesConMesAnterior;
+        this.manejadorObtenerVentasTotalesConMesAnterior = manejadorObtenerVentasTotalesConMesAnterior;
+        this.manejadorObtenerCantidadVentasEnLocalYWebsite = manejadorObtenerCantidadVentasEnLocalYWebsite;
     }
 
     @GetMapping()
@@ -48,6 +51,15 @@ public class ConsultaControladorSale {
     @GetMapping("/ganancias")
     public MesAnteriorConMesActual obtenerGanancias(){
         return this.manejadorObtenerGananciasTotalesConMesAnterior.ejecutar();
+    }
+
+    @GetMapping("/ventas")
+    public MesAnteriorConMesActual obtenerVentasTotales(){
+        return this.manejadorObtenerVentasTotalesConMesAnterior.ejecutar();
+    }
+    @GetMapping("/cantidadventas")
+    public CantidadVentasLocalyWebsite obtenerCantidadVentasWebsiteYLocal(){
+        return this.manejadorObtenerCantidadVentasEnLocalYWebsite.ejecutar();
     }
 
 }

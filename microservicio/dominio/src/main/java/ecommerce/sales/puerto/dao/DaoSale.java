@@ -10,8 +10,10 @@ public interface DaoSale {
     Sale obtenerVentaPorID(Long id);
     List<Sale> obtenerTotalVentas();
     List<SaleProduct> obtenerVentasPorIdProducto(Long id);
-
     List<Sale> obtenerVentasPorFecha(LocalDateTime fechaInicial, LocalDateTime fechaFinal);
+
+    Long obtenerCantidadVentasWebsite();
+    Long obtenerCantidadVentasLocal();
 
 
 }

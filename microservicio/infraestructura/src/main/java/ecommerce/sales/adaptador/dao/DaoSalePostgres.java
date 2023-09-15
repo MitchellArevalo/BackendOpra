@@ -11,7 +11,9 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class DaoSalePostgres implements DaoSale {
@@ -31,6 +33,11 @@ public class DaoSalePostgres implements DaoSale {
 
     @SqlStatement(namespace = "sales", value = "obtenerVentasAprobadasPorMes")
     private static String sqlObtenerVentasAprobadasPorMes;
+
+    @SqlStatement(namespace = "sales", value = "obtenerCantidadVentasWebsite")
+    private static String sqlobtenerCantidadVentasWebsite;
+    @SqlStatement(namespace = "sales", value = "obtenerCantidadVentasLocal")
+    private static String sqlobtenerCantidadVentasLocal;
 
 
     @Override
@@ -58,5 +65,19 @@ public class DaoSalePostgres implements DaoSale {
         parameterSource.addValue("sale_date_final", fechaFinal);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .query(sqlObtenerVentasAprobadasPorMes, parameterSource, mapeoSale);
+    }
+
+    @Override
+    public Long obtenerCantidadVentasWebsite() {
+        Map<String, Object> params = Collections.emptyMap();
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlobtenerCantidadVentasLocal, params, Long.class);
+    }
+
+    @Override
+    public Long obtenerCantidadVentasLocal() {
+        Map<String, Object> params = Collections.emptyMap();
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlobtenerCantidadVentasLocal, params, Long.class);
     }
 }
