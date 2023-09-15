@@ -1,0 +1,1 @@
+select * from saleproducts where product_id = :product_id

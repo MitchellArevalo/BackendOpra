@@ -17,12 +17,16 @@ import ecommerce.notifications.puerto.repositorio.RepositorioNotification;
 import ecommerce.notifications.servicio.ServiciosNotifications;
 import ecommerce.outputproducts.puerto.repositorio.RepositorioOutputProduct;
 import ecommerce.outputproducts.servicio.ServiciosOutputProduct;
-import ecommerce.personas.puerto.repositorio.RepositorioPersona;
-import ecommerce.personas.servicio.ServicioCrearPersona;
+import ecommerce.payment.puerto.repositorio.RepositorioPayment;
+import ecommerce.payment.servicio.ServiciosPayment;
 import ecommerce.productos.puerto.repositorio.RepositorioProduct;
 import ecommerce.productos.servicio.ServiciosProduct;
 import ecommerce.roles.puerto.repositorio.RepositorioRol;
 import ecommerce.roles.servicio.ServicioCrearRol;
+import ecommerce.sales.puerto.repositorio.RepositorioSale;
+import ecommerce.sales.servicio.ServiciosSales;
+import ecommerce.salesproducts.puerto.repositorio.RepositorioSaleProduct;
+import ecommerce.salesproducts.servicio.ServiciosSaleProducts;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,10 +44,6 @@ public class BeanServicio {
         return new ServicioCrearRol(repositorioRol);
     }
 
-    @Bean
-    public ServicioCrearPersona servicioCrearPersona(RepositorioPersona repositorioPersona){
-        return new ServicioCrearPersona(repositorioPersona);
-    }
     @Bean
     public ServicioCrearEmployee servicioCrearEmployee(RepositorioEmployee repositorioEmployee){
         return new ServicioCrearEmployee(repositorioEmployee);
@@ -90,6 +90,19 @@ public class BeanServicio {
     public ServiciosOutputProduct serviciosOutputProduct(RepositorioOutputProduct repositorioOutputProduct, RepositorioProduct repositorioProduct){
         return new ServiciosOutputProduct(repositorioOutputProduct, repositorioProduct);
     }
+    @Bean
+    public ServiciosSales serviciosSales(RepositorioSale repositorioSale){
+        return new ServiciosSales(repositorioSale);
+    }
 
+    @Bean
+    public ServiciosSaleProducts serviciosSaleProducts(RepositorioSaleProduct repositorioSaleProduct, RepositorioSale repositorioSale){
+        return new ServiciosSaleProducts(repositorioSaleProduct, repositorioSale);
+    }
+
+    @Bean
+    public ServiciosPayment serviciosPayment(RepositorioPayment repositorioPayment, RepositorioSale repositorioSale){
+        return new ServiciosPayment(repositorioPayment, repositorioSale);
+    }
 
 }

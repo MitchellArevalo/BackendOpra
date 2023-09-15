@@ -1,6 +1,5 @@
 package ecommerce.employees.puerto.repositorio;
 
-import ecommerce.employees.modelo.dto.DataDTOEmployee;
 import ecommerce.employees.modelo.entidad.Employee;
 
 public interface RepositorioEmployee {

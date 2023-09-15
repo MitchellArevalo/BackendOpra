@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Component
 public class MapeoInputProduct implements RowMapper<InputProduct>, MapperResult {

@@ -1,6 +1,5 @@
 package ecommerce.notifications.adaptador.repositorio;
 
-import ecommerce.employees.modelo.dto.DataDTOEmployee;
 import ecommerce.employees.modelo.entidad.Employee;
 import ecommerce.employees.puerto.dao.DaoEmployee;
 import ecommerce.infraestructura.jdbc.MapperResult;

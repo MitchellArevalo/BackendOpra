@@ -11,4 +11,7 @@ public interface RepositorioProduct {
 
     void addToStock(Long id, BigDecimal quantityStock);
     void removeToStock(Long id, BigDecimal quantityStock);
+
+    void updateSalesPriceProduct(Long id, BigDecimal salesPriceProduct);
+    void updateCostPriceProduct(Long id, BigDecimal costPriceProduct);
 }

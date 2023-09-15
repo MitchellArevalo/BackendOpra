@@ -3,7 +3,6 @@ package ecommerce.outputsproducts.adaptador.repositorio;
 import ecommerce.employees.modelo.entidad.Employee;
 import ecommerce.employees.puerto.dao.DaoEmployee;
 import ecommerce.infraestructura.jdbc.MapperResult;
-import ecommerce.inputs.modelo.entidad.InputProduct;
 import ecommerce.outputproducts.modelo.entidad.OutputProduct;
 import ecommerce.productos.modelo.entidad.Product;
 import ecommerce.productos.puerto.dao.DaoProduct;

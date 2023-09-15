@@ -2,7 +2,6 @@ package ecommerce.employee.adaptador.dao;
 
 import ecommerce.employee.adaptador.repositorio.MapeoDTOEmployee;
 import ecommerce.employee.adaptador.repositorio.MapeoEmployee;
-import ecommerce.employees.modelo.dto.DataDTOEmployee;
 import ecommerce.employees.modelo.entidad.Employee;
 import ecommerce.employees.puerto.dao.DaoEmployee;
 import ecommerce.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
@@ -46,7 +45,7 @@ public class DaoEmployeePostgres implements DaoEmployee {
     }
 
     @Override
-    public DataDTOEmployee getDTOEmployee(Long id) {
+    public ecommerce.employees.modelo.dto.DataDTOEmployee getDTOEmployee(Long id) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("id", id);
         return EjecucionBaseDeDatos.obtenerUnObjetoONull(() -> this.customNamedParameterJdbcTemplate

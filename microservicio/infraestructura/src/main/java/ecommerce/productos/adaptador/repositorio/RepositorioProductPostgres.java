@@ -33,6 +33,10 @@ public class RepositorioProductPostgres implements RepositorioProduct {
     @SqlStatement(namespace = "producto", value = "removeToStock")
     private static String sqlRemoveStock;
 
+    @SqlStatement(namespace = "producto", value = "updateSalesPriceProduct")
+    private static String sqlUpdateSalesPriceProduct;
+    @SqlStatement(namespace = "producto", value = "updateCostPriceProduct")
+    private static String sqlUpdateCostPriceProduct;
 
     @Override
     public Long crear(Product product) {
@@ -85,5 +89,21 @@ public class RepositorioProductPostgres implements RepositorioProduct {
         parameterSource.addValue("id", id);
         parameterSource.addValue("product_stock", quantityStock);
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlRemoveStock, parameterSource);
+    }
+
+    @Override
+    public void updateSalesPriceProduct(Long id, BigDecimal salesPriceProduct) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        parameterSource.addValue("product_sales_price", salesPriceProduct);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlUpdateSalesPriceProduct, parameterSource);
+    }
+
+    @Override
+    public void updateCostPriceProduct(Long id, BigDecimal costPriceProduct) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
+        parameterSource.addValue("product_cost_price", costPriceProduct);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlUpdateCostPriceProduct, parameterSource);
     }
 }
