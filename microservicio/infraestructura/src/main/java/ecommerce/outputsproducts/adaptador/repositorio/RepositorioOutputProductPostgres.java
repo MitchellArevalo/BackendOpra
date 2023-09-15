@@ -21,19 +21,6 @@ public class RepositorioOutputProductPostgres implements RepositorioOutputProduc
     @SqlStatement(namespace = "outputproducts", value = "addoutput")
     private static String sqlCrear;
 
-/*
-    @Override
-    public Long crear(InputProduct inputProduct) {
-        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue("employee_id", inputProduct.getEmployee().getIdEmployee());
-        parameterSource.addValue("product_id", inputProduct.getProduct().getId());
-        parameterSource.addValue("input_product_cost", inputProduct.getCostProduct());
-        parameterSource.addValue("input_quantity", inputProduct.getQuantityProduct());
-        parameterSource.addValue("input_description", inputProduct.getDescription());
-        parameterSource.addValue("input_date", inputProduct.getDateInput());
-        return this.customNamedParameterJdbcTemplate.crear(parameterSource, sqlCrear);
-    }
-*/
     @Override
     public Long crear(OutputProduct outputProduct) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
