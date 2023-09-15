@@ -57,7 +57,7 @@ public class ConsultaControladorSale {
     public MesAnteriorConMesActual obtenerVentasTotales(){
         return this.manejadorObtenerVentasTotalesConMesAnterior.ejecutar();
     }
-    @GetMapping("/cantidadventas")
+    @GetMapping("/lugar")
     public CantidadVentasLocalyWebsite obtenerCantidadVentasWebsiteYLocal(){
         return this.manejadorObtenerCantidadVentasEnLocalYWebsite.ejecutar();
     }
