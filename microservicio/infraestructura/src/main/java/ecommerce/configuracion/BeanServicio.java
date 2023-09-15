@@ -25,6 +25,7 @@ import ecommerce.roles.puerto.repositorio.RepositorioRol;
 import ecommerce.roles.servicio.ServicioCrearRol;
 import ecommerce.sales.puerto.repositorio.RepositorioSale;
 import ecommerce.sales.servicio.ServiciosSales;
+import ecommerce.salesproducts.puerto.dao.DaoSaleProduct;
 import ecommerce.salesproducts.puerto.repositorio.RepositorioSaleProduct;
 import ecommerce.salesproducts.servicio.ServiciosSaleProducts;
 import org.springframework.context.annotation.Bean;
@@ -101,8 +102,8 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServiciosPayment serviciosPayment(RepositorioPayment repositorioPayment, RepositorioSale repositorioSale){
-        return new ServiciosPayment(repositorioPayment, repositorioSale);
+    public ServiciosPayment serviciosPayment(RepositorioPayment repositorioPayment, RepositorioSale repositorioSale, DaoSaleProduct daoSaleProduct, RepositorioProduct repositorioProduct){
+        return new ServiciosPayment(repositorioPayment, repositorioSale, daoSaleProduct, repositorioProduct);
     }
 
 }

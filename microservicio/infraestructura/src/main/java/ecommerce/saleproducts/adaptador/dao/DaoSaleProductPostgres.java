@@ -26,7 +26,11 @@ public class DaoSaleProductPostgres implements DaoSaleProduct {
     @SqlStatement(namespace = "saleproducts", value = "obtenerListaSaleProductsPorIdProducto")
     private static String sqlObtenerListaSaleProductsPorIdProducto;
 
+    @SqlStatement(namespace = "saleproducts", value = "obtenerSaleProductsPorIDVentaAprobadas")
+    private static String sqlObtenerPorIDVenta;
 
+    @SqlStatement(namespace = "saleproducts", value = "obtenerSaleProductsPorIDVenta")
+    private static String sqlObtenerListaSaleProductsPorIDVenta;
     @Override
     public SaleProduct obtenerPorId(Long id) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
@@ -43,6 +47,22 @@ public class DaoSaleProductPostgres implements DaoSaleProduct {
     @Override
     public List<SaleProduct> obtenerVentasGenerales() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerListaSaleProducts, mapeoSaleProduct);
+    }
+
+    @Override
+    public List<SaleProduct> obtenerVentasPorIDVentaAprobadas(Long idVenta) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("sale_id", idVenta);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .query(sqlObtenerPorIDVenta, parameterSource, mapeoSaleProduct);
+    }
+
+    @Override
+    public List<SaleProduct> obtenerProductosPorVenderPorIDVenta(Long idVenta) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("sale_id", idVenta);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .query(sqlObtenerListaSaleProductsPorIDVenta, parameterSource, mapeoSaleProduct);
     }
 
 }
