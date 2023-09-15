@@ -3,6 +3,8 @@ package ecommerce.sales.adaptador.dao;
 import ecommerce.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import ecommerce.infraestructura.jdbc.EjecucionBaseDeDatos;
 import ecommerce.infraestructura.jdbc.sqlstatement.SqlStatement;
+import ecommerce.productos.adaptador.repositorio.MapeoProductDTO;
+import ecommerce.productos.modelo.dto.ProductoDTO;
 import ecommerce.sales.adaptador.repositorio.MapeoSale;
 import ecommerce.sales.modelo.entidad.Sale;
 import ecommerce.sales.puerto.dao.DaoSale;
@@ -19,10 +21,12 @@ import java.util.Map;
 public class DaoSalePostgres implements DaoSale {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
     private final MapeoSale mapeoSale;
+    private final MapeoProductDTO mapeoProductDTO;
 
-    public DaoSalePostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, MapeoSale mapeoSale) {
+    public DaoSalePostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate, MapeoSale mapeoSale, MapeoProductDTO mapeoProductDTO) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
         this.mapeoSale = mapeoSale;
+        this.mapeoProductDTO = mapeoProductDTO;
     }
     @SqlStatement(namespace = "sales", value = "obtenerSalePorId")
     private static String sqlObtenerSalePorID;
@@ -38,6 +42,10 @@ public class DaoSalePostgres implements DaoSale {
     private static String sqlobtenerCantidadVentasWebsite;
     @SqlStatement(namespace = "sales", value = "obtenerCantidadVentasLocal")
     private static String sqlobtenerCantidadVentasLocal;
+    @SqlStatement(namespace = "sales", value = "obtenerVentasRecientes")
+    private static String sqlObtenerOrdenesVentaMasRecientes;
+    @SqlStatement(namespace = "sales", value = "obtenerProductosMasVendidos")
+    private static String sqlObtenerCantidadProductosMasVendidos;
 
 
     @Override
@@ -71,7 +79,7 @@ public class DaoSalePostgres implements DaoSale {
     public Long obtenerCantidadVentasWebsite() {
         Map<String, Object> params = Collections.emptyMap();
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .queryForObject(sqlobtenerCantidadVentasLocal, params, Long.class);
+                .queryForObject(sqlobtenerCantidadVentasWebsite, params, Long.class);
     }
 
     @Override
@@ -79,5 +87,15 @@ public class DaoSalePostgres implements DaoSale {
         Map<String, Object> params = Collections.emptyMap();
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlobtenerCantidadVentasLocal, params, Long.class);
+    }
+
+    @Override
+    public List<Sale> obtenerOrdenesDeVentaMasRecientes() {
+        return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerOrdenesVentaMasRecientes, mapeoSale);
+    }
+
+    @Override
+    public List<ProductoDTO> obtenerCantidadProductosVendidos() {
+        return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerCantidadProductosMasVendidos, mapeoProductDTO);
     }
 }

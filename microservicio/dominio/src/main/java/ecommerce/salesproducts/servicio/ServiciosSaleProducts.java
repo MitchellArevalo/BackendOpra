@@ -1,5 +1,6 @@
 package ecommerce.salesproducts.servicio;
 
+import ecommerce.dominio.excepcion.ExcepcionProductoSinStock;
 import ecommerce.sales.modelo.entidad.Sale;
 import ecommerce.sales.puerto.repositorio.RepositorioSale;
 import ecommerce.salesproducts.modelo.entidad.SaleProduct;
@@ -18,8 +19,13 @@ public class ServiciosSaleProducts {
     }
 
     public Long crear(SaleProduct saleProduct){
-        definirValoresCamposDeVenta(saleProduct);
-        return this.repositorioSaleProduct.crear(saleProduct);
+        if(saleProduct.getProduct().getStock() > 0){
+            definirValoresCamposDeVenta(saleProduct);
+            return this.repositorioSaleProduct.crear(saleProduct);
+        }else {
+            throw new ExcepcionProductoSinStock("Producto sin stock suficiente");
+        }
+
     }
 
     private void definirValoresCamposDeVenta(SaleProduct saleProduct){
