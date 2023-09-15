@@ -27,8 +27,7 @@ CREATE TABLE roles
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     rol_name VARCHAR (255) NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE (rol_name)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE moduleRol
@@ -133,8 +132,7 @@ CREATE TABLE products
     product_image TEXT NOT NULL,
     product_stock INT default 0,
     category_id int not null,
-    PRIMARY KEY (id),
-    UNIQUE (product_item_code)
+    PRIMARY KEY (id)
 );
 
 ALTER TABLE saleProducts ADD CONSTRAINT product_id FOREIGN KEY (product_id) REFERENCES products(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
@@ -158,8 +156,8 @@ CREATE TABLE category
 (
     id INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 ),
     category_name VARCHAR (255) NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE(category_name)
+    PRIMARY KEY (id)
+
 );
 
 ALTER TABLE products ADD CONSTRAINT category_id FOREIGN KEY (category_id) REFERENCES category(id) ON UPDATE NO ACTION ON DELETE NO ACTION;
