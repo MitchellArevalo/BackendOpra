@@ -1,10 +1,10 @@
 package ecommerce.saleproducts.controlador;
 
 
-import ecommerce.roles.modelo.entidad.Rol;
-import ecommerce.sales.consulta.ManejadorObtenerSalePorID;
 import ecommerce.salesproducts.consulta.ManejadorObtenerListaSaleProducts;
 import ecommerce.salesproducts.consulta.ManejadorObtenerSaleProductPorID;
+import ecommerce.salesproducts.consulta.ManejadorObtenerSaleProductsPorIDVenta;
+import ecommerce.salesproducts.consulta.ManejadorObtenerSaleProductsPorIDVentaPorAprobar;
 import ecommerce.salesproducts.modelo.entidad.SaleProduct;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,9 +22,13 @@ public class ConsultaControladorSaleProducts {
     private final ManejadorObtenerSaleProductPorID manejadorObtenerSaleProductPorID;
     private final ManejadorObtenerListaSaleProducts manejadorObtenerListaSaleProducts;
 
-    public ConsultaControladorSaleProducts(ManejadorObtenerSaleProductPorID manejadorObtenerSaleProductPorID, ManejadorObtenerListaSaleProducts manejadorObtenerListaSaleProducts) {
+    private final ManejadorObtenerSaleProductsPorIDVenta manejadorObtenerSaleProductsPorIDVenta;
+    private final ManejadorObtenerSaleProductsPorIDVentaPorAprobar manejadorObtenerSaleProductsPorIDVentaPorAprobar;
+    public ConsultaControladorSaleProducts(ManejadorObtenerSaleProductPorID manejadorObtenerSaleProductPorID, ManejadorObtenerListaSaleProducts manejadorObtenerListaSaleProducts, ManejadorObtenerSaleProductsPorIDVenta manejadorObtenerSaleProductsPorIDVenta, ManejadorObtenerSaleProductsPorIDVentaPorAprobar manejadorObtenerSaleProductsPorIDVentaPorAprobar) {
         this.manejadorObtenerSaleProductPorID = manejadorObtenerSaleProductPorID;
         this.manejadorObtenerListaSaleProducts = manejadorObtenerListaSaleProducts;
+        this.manejadorObtenerSaleProductsPorIDVenta = manejadorObtenerSaleProductsPorIDVenta;
+        this.manejadorObtenerSaleProductsPorIDVentaPorAprobar = manejadorObtenerSaleProductsPorIDVentaPorAprobar;
     }
 
     @GetMapping()
@@ -37,6 +41,24 @@ public class ConsultaControladorSaleProducts {
     @Operation(summary = "Visualizar uno", description = "Metodo utilizado para consultar los datos de SaleProduct")
     public SaleProduct obtenerPorId(@PathVariable("id")Long id){
         return this.manejadorObtenerSaleProductPorID.ejecutar(id);
+    }
+
+    @GetMapping("/sale/{idVenta}")
+    @Operation(summary = "Visualizar todos", description = "Metodo utilizado para consultar los datos de los SaleProduct")
+    public List<SaleProduct> obtenerListaSaleProductsPorIDVenta(@PathVariable("idVenta")Long id){
+        return manejadorObtenerSaleProductsPorIDVenta.ejecutar(id);
+    }
+
+    @GetMapping("/product/{idProduct}")
+    @Operation(summary = "Visualizar todos", description = "Metodo utilizado para consultar los datos de los SaleProduct")
+    public List<SaleProduct> obtenerListaSaleProductsPorIDProduct(@PathVariable("idProduct")Long id){
+        return manejadorObtenerSaleProductsPorIDVenta.ejecutar(id);
+    }
+
+    @GetMapping("/sale/pending/{idProduct}")
+    @Operation(summary = "Visualizar todos", description = "Metodo utilizado para consultar los datos de los SaleProduct")
+    public List<SaleProduct> obtenerSaleProductsPorIDVentaPendiente(@PathVariable("idProduct")Long id){
+        return manejadorObtenerSaleProductsPorIDVentaPorAprobar.ejecutar(id);
     }
 
 

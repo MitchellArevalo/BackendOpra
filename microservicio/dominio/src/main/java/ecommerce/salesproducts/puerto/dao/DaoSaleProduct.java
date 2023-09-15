@@ -9,5 +9,9 @@ public interface DaoSaleProduct {
     List<SaleProduct> obtenerVentasDeProductosPorID(Long id);
     List<SaleProduct> obtenerVentasGenerales();
 
+    List<SaleProduct> obtenerVentasPorIDVentaAprobadas(Long id);
+
+    List<SaleProduct> obtenerProductosPorVenderPorIDVenta(Long idVenta);
+
 
 }

@@ -10,7 +10,10 @@ import ecommerce.salesproducts.modelo.entidad.SaleProduct;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class DaoSalePostgres implements DaoSale {
@@ -27,6 +30,14 @@ public class DaoSalePostgres implements DaoSale {
     private static String sqlObtenerListado;
     @SqlStatement(namespace = "sales", value = "obtenerSalePorIdProductos")
     private static String sqlObtenerListadoPorVentaProducto;
+
+    @SqlStatement(namespace = "sales", value = "obtenerVentasAprobadasPorMes")
+    private static String sqlObtenerVentasAprobadasPorMes;
+
+    @SqlStatement(namespace = "sales", value = "obtenerCantidadVentasWebsite")
+    private static String sqlobtenerCantidadVentasWebsite;
+    @SqlStatement(namespace = "sales", value = "obtenerCantidadVentasLocal")
+    private static String sqlobtenerCantidadVentasLocal;
 
 
     @Override
@@ -45,5 +56,28 @@ public class DaoSalePostgres implements DaoSale {
     @Override
     public List<SaleProduct> obtenerVentasPorIdProducto(Long id) {
         return null;
+    }
+
+    @Override
+    public List<Sale> obtenerVentasPorFecha(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("sale_date_inicial", fechaInicial);
+        parameterSource.addValue("sale_date_final", fechaFinal);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .query(sqlObtenerVentasAprobadasPorMes, parameterSource, mapeoSale);
+    }
+
+    @Override
+    public Long obtenerCantidadVentasWebsite() {
+        Map<String, Object> params = Collections.emptyMap();
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlobtenerCantidadVentasLocal, params, Long.class);
+    }
+
+    @Override
+    public Long obtenerCantidadVentasLocal() {
+        Map<String, Object> params = Collections.emptyMap();
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlobtenerCantidadVentasLocal, params, Long.class);
     }
 }
