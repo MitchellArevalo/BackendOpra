@@ -19,9 +19,8 @@ public class ServiciosOutputProduct {
     public Long guardar(OutputProduct outputProduct){
         try {
             BigDecimal removeStock = BigDecimal.valueOf(outputProduct.getProduct().getStock()).subtract(outputProduct.getQuantityProduct());
-            ValidadorArgumento.validarMenor(((long)outputProduct.getProduct().getStock()),(outputProduct.getQuantityProduct()).longValueExact(), "Producto sin stock suficiente");
 
-            if(outputProduct.getProduct().getStock() > Integer.parseInt(String.valueOf(outputProduct.getQuantityProduct()))){
+            if(outputProduct.getProduct().getStock() > (outputProduct.getQuantityProduct()).longValueExact()){
                 this.repositorioProduct.removeToStock(outputProduct.getProduct().getId(), removeStock);
                 return this.repositorioOutputProduct.crear(outputProduct);
             }
