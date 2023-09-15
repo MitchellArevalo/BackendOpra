@@ -25,8 +25,9 @@ public class ConsultaControladorSale {
     private final ManejadorObtenerCantidadVentasEnLocalYWebsite manejadorObtenerCantidadVentasEnLocalYWebsite;
     private final ManejadorObtenerOrdenesDeVentaRecientes manejadorObtenerOrdenesDeVentaRecientes;
     private final ManejadorObtenerProductosMasVendidos manejadorObtenerProductosMasVendidos;
+    private final ManejadorObtenerVentasAnual manejadorObtenerVentasAnual;
 
-    public ConsultaControladorSale(ManejadorObtenerSalePorID manejadorObtenerSalePorID, ManejadorObtenerListadoVentas manejadorObtenerListadoVentas, DaoSale daoSale, ManejadorObtenerGananciasTotalesConMesAnterior manejadorObtenerGananciasTotalesConMesAnterior, ManejadorObtenerVentasTotalesConMesAnterior manejadorObtenerVentasTotalesConMesAnterior, ManejadorObtenerCantidadVentasEnLocalYWebsite manejadorObtenerCantidadVentasEnLocalYWebsite, ManejadorObtenerOrdenesDeVentaRecientes manejadorObtenerOrdenesDeVentaRecientes, ManejadorObtenerProductosMasVendidos manejadorObtenerProductosMasVendidos) {
+    public ConsultaControladorSale(ManejadorObtenerSalePorID manejadorObtenerSalePorID, ManejadorObtenerListadoVentas manejadorObtenerListadoVentas, DaoSale daoSale, ManejadorObtenerGananciasTotalesConMesAnterior manejadorObtenerGananciasTotalesConMesAnterior, ManejadorObtenerVentasTotalesConMesAnterior manejadorObtenerVentasTotalesConMesAnterior, ManejadorObtenerCantidadVentasEnLocalYWebsite manejadorObtenerCantidadVentasEnLocalYWebsite, ManejadorObtenerOrdenesDeVentaRecientes manejadorObtenerOrdenesDeVentaRecientes, ManejadorObtenerProductosMasVendidos manejadorObtenerProductosMasVendidos, ManejadorObtenerVentasAnual manejadorObtenerVentasAnual) {
         this.manejadorObtenerSalePorID = manejadorObtenerSalePorID;
         this.manejadorObtenerListadoVentas = manejadorObtenerListadoVentas;
         this.daoSale = daoSale;
@@ -35,6 +36,7 @@ public class ConsultaControladorSale {
         this.manejadorObtenerCantidadVentasEnLocalYWebsite = manejadorObtenerCantidadVentasEnLocalYWebsite;
         this.manejadorObtenerOrdenesDeVentaRecientes = manejadorObtenerOrdenesDeVentaRecientes;
         this.manejadorObtenerProductosMasVendidos = manejadorObtenerProductosMasVendidos;
+        this.manejadorObtenerVentasAnual = manejadorObtenerVentasAnual;
     }
 
     @GetMapping()
@@ -76,6 +78,10 @@ public class ConsultaControladorSale {
     public List<ProductoDTO> obtenerProductosVendidos(){
         return manejadorObtenerProductosMasVendidos.ejecutar();
     }
-
+    @GetMapping("/anuales")
+    @Operation(summary = "Visualizar todos", description = "Metodo utilizado para consultar los datos de los SaleProduct")
+    public List<Long> obtenerVentasAnuales(){
+        return manejadorObtenerVentasAnual.ejecutar();
+    }
 
 }
