@@ -1,5 +1,6 @@
 package ecommerce.sales.puerto.dao;
 
+import ecommerce.productos.modelo.dto.ProductoDTO;
 import ecommerce.sales.modelo.entidad.Sale;
 import ecommerce.salesproducts.modelo.entidad.SaleProduct;
 
@@ -15,5 +16,7 @@ public interface DaoSale {
     Long obtenerCantidadVentasWebsite();
     Long obtenerCantidadVentasLocal();
 
+    List<Sale> obtenerOrdenesDeVentaMasRecientes();
 
+    List<ProductoDTO> obtenerCantidadProductosVendidos();
 }

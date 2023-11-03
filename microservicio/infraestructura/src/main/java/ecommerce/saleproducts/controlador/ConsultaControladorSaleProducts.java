@@ -1,6 +1,8 @@
 package ecommerce.saleproducts.controlador;
 
 
+import ecommerce.productos.modelo.dto.ProductoDTO;
+import ecommerce.sales.consulta.ManejadorObtenerProductosMasVendidos;
 import ecommerce.salesproducts.consulta.ManejadorObtenerListaSaleProducts;
 import ecommerce.salesproducts.consulta.ManejadorObtenerSaleProductPorID;
 import ecommerce.salesproducts.consulta.ManejadorObtenerSaleProductsPorIDVenta;
@@ -24,11 +26,13 @@ public class ConsultaControladorSaleProducts {
 
     private final ManejadorObtenerSaleProductsPorIDVenta manejadorObtenerSaleProductsPorIDVenta;
     private final ManejadorObtenerSaleProductsPorIDVentaPorAprobar manejadorObtenerSaleProductsPorIDVentaPorAprobar;
-    public ConsultaControladorSaleProducts(ManejadorObtenerSaleProductPorID manejadorObtenerSaleProductPorID, ManejadorObtenerListaSaleProducts manejadorObtenerListaSaleProducts, ManejadorObtenerSaleProductsPorIDVenta manejadorObtenerSaleProductsPorIDVenta, ManejadorObtenerSaleProductsPorIDVentaPorAprobar manejadorObtenerSaleProductsPorIDVentaPorAprobar) {
+    private final ManejadorObtenerProductosMasVendidos manejadorObtenerProductosMasVendidos;
+    public ConsultaControladorSaleProducts(ManejadorObtenerSaleProductPorID manejadorObtenerSaleProductPorID, ManejadorObtenerListaSaleProducts manejadorObtenerListaSaleProducts, ManejadorObtenerSaleProductsPorIDVenta manejadorObtenerSaleProductsPorIDVenta, ManejadorObtenerSaleProductsPorIDVentaPorAprobar manejadorObtenerSaleProductsPorIDVentaPorAprobar, ManejadorObtenerProductosMasVendidos manejadorObtenerProductosMasVendidos) {
         this.manejadorObtenerSaleProductPorID = manejadorObtenerSaleProductPorID;
         this.manejadorObtenerListaSaleProducts = manejadorObtenerListaSaleProducts;
         this.manejadorObtenerSaleProductsPorIDVenta = manejadorObtenerSaleProductsPorIDVenta;
         this.manejadorObtenerSaleProductsPorIDVentaPorAprobar = manejadorObtenerSaleProductsPorIDVentaPorAprobar;
+        this.manejadorObtenerProductosMasVendidos = manejadorObtenerProductosMasVendidos;
     }
 
     @GetMapping()
@@ -60,6 +64,8 @@ public class ConsultaControladorSaleProducts {
     public List<SaleProduct> obtenerSaleProductsPorIDVentaPendiente(@PathVariable("idProduct")Long id){
         return manejadorObtenerSaleProductsPorIDVentaPorAprobar.ejecutar(id);
     }
+
+
 
 
 

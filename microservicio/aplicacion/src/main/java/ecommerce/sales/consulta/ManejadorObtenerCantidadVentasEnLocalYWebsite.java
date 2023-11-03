@@ -16,8 +16,8 @@ public class ManejadorObtenerCantidadVentasEnLocalYWebsite {
 
     public CantidadVentasLocalyWebsite ejecutar(){
         try{
-            BigDecimal ventasLocal = BigDecimal.valueOf(daoSale.obtenerCantidadVentasLocal());
-            BigDecimal ventasWebsite = BigDecimal.valueOf(daoSale.obtenerCantidadVentasWebsite());
+            Long ventasLocal = this.daoSale.obtenerCantidadVentasLocal();
+            Long ventasWebsite = daoSale.obtenerCantidadVentasWebsite();
             return new CantidadVentasLocalyWebsite(ventasLocal, ventasWebsite);
         }catch (RuntimeException e){
             throw new RuntimeException(e);
