@@ -1,6 +1,7 @@
 package ecommerce.salesproducts.servicio;
 
-import ecommerce.dominio.excepcion.ExcepcionProductoSinStock;
+
+import ecommerce.errorhandlers.ExcepcionProductoSinStock;
 import ecommerce.sales.modelo.entidad.Sale;
 import ecommerce.sales.puerto.repositorio.RepositorioSale;
 import ecommerce.salesproducts.modelo.entidad.SaleProduct;
